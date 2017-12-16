@@ -1,0 +1,49 @@
+.content {
+    margin-top: 70px;
+}
+
+/*
+    Datepicker
+ */
+.datepicker .day {
+    color : #087e0a !important;
+}
+.datepicker .day.disabled {
+    color : #bd1720 !important;
+}
+
+/*
+    Navbar
+ */
+.admin-item {
+    background-color : #eed2b5;
+}
+.admin-item.dropdown-item:hover {
+    background-image: none !important;
+    background-color : #eac8a7 !important;
+}
+
+/*
+    Admin
+ */
+.reservation_tr:hover {
+    cursor : pointer !important;
+}
+.reservation_annulee {
+    background-color: #eea9a7 !important;
+}
+
+/*
+    Homepage
+ */
+@media (min-width: 550px){
+    .fb_embed_small {
+        display : none;
+    }
+}
+@media (max-width: 550px){
+    .fb_embed_large {
+        display : none;
+    }
+}
+
