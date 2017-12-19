@@ -3,6 +3,8 @@
 @section('content')
     <h1>Contact</h1>
 
+    <p>Vous pouvez me contacter par téléphone au {{ env("PHONE_FRANCOIS") }}.</p>
+
     @include("flash")
 
     {!! Form::open(array('url' => 'contact', 'method' => 'post')) !!}

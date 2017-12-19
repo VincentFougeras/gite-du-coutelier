@@ -8,6 +8,11 @@
         });
 
 
+        $('.carousel').carousel({
+            interval: false
+        });
+
+
         // Initialiser les dates de réservation
 
         updateDates();
@@ -15,6 +20,15 @@
         /* Changements du lieu ou d'une date */
         $('#place').change(function(){
             updateDates();
+
+            if($('#place').find('option:selected').prop('value') === '1'){
+                // Switch to chalet
+                $('.carousel').carousel(0);
+            }
+            else {
+                // Switch to extension
+                $('.carousel').carousel(1);
+            }
         });
 
     });

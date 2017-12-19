@@ -7,9 +7,11 @@
  */
 .datepicker .day {
     color : #087e0a !important;
+    font-weight: normal;
 }
 .datepicker .day.disabled {
     color : #bd1720 !important;
+    font-weight: bold;
 }
 
 /*
