@@ -24,7 +24,7 @@
         <p>{{ $book->content }}</p>
         <p>{{ $book->created_at->diffForHumans() }}</p>
 
-        @if(Auth::check() && ($book->user->id === Auth::user()->id || Auth::user()->isAdmin))
+        @if(Auth::check() && ($book->user->id === Auth::user()->id || Auth::user()->is_admin))
             {!! Form::open(['method' => 'DELETE', 'url' => ['visitors-book', $book->id]]) !!}
             {!! Form::submit('Supprimer l\'avis', ['class' => 'btn btn-danger']) !!}
             {!! Form::close() !!}
