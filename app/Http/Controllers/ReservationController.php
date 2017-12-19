@@ -151,9 +151,7 @@ class ReservationController extends Controller
                 $currWeek->lte(Carbon::now()->addYears(self::YEARS_IN_ADVANCE));
                 $currWeek->next(Carbon::FRIDAY)){
             if($currWeek->weekOfYear >= 18 && $currWeek->weekOfYear <= 39){
-                // Summer : forbid fri and sat
-                $forbiddenDays[] = $currWeek->__toString();
-                $currWeek->addDay();
+                // Summer : forbid friday
                 $forbiddenDays[] = $currWeek->__toString();
             }
         }
@@ -228,7 +226,7 @@ class ReservationController extends Controller
                         }
                     }
                     else {
-                        if($beginning->dayOfWeek == 5 && $end->dayOfWeek == 6 && $is_chalet){ // W-e accepté dans le chalet hors saison
+                        if($beginning->dayOfWeek == 5 && $end->dayOfWeek == 0 && $is_chalet){ // W-e accepté dans le chalet hors saison
                             return self::PRICE_CHALET_WEEK_END_HORS_SAISON;
                         }
                         else {

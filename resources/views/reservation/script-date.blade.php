@@ -27,9 +27,9 @@
             $('#end_group > input').val("");
             var selectedDate = moment($("#begin_group > input").val(), "DD/MM/YYYY");
             if(selectedDate.day() === 5){
-                var nextDay = moment($("#begin_group > input").val(), "DD/MM/YYYY").add(1, 'days');
+                var nextSunday = moment($("#begin_group > input").val(), "DD/MM/YYYY").add(2, 'days');
                 $('#end_group').data("DateTimePicker").daysOfWeekDisabled(oldDays);
-                $('#end_group').data("DateTimePicker").enabledDates([ nextDay ]);
+                $('#end_group').data("DateTimePicker").enabledDates([ nextSunday ]);
             }
             else if(selectedDate.day() === 1) {
                 $('#end_group').data("DateTimePicker").enabledDates(false);
@@ -95,18 +95,18 @@
 
     // Modifier le nombre de personnes et changer les jours de la semaine désactivés
     function updateDaysOfWeekAndPeople(){
-        if($('#place').val() == 1){
+        if($('#place').val() == 1){ // Chalet
             $('.nb_people_extension').hide();
             if($('#nb_people').val() > 4){
                 $('#nb_people').val(4);
             }
 
             $('#begin_group').data("DateTimePicker").daysOfWeekDisabled([0,2,3,4,6]);
-            $('#end_group').data("DateTimePicker").daysOfWeekDisabled([1,2,3,4,5]);
+            $('#end_group').data("DateTimePicker").daysOfWeekDisabled([1,2,3,4,5,6]);
             $('#end_group').data("DateTimePicker").enabledDates(false);
             oldDays = [1,2,3,4,5];
         }
-        else {
+        else { // Extension
             $('.nb_people_extension').show();
 
             $('#begin_group').data("DateTimePicker").daysOfWeekDisabled([0,2,3,4,5,6]);
