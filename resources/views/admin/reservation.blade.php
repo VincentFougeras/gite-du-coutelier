@@ -5,7 +5,7 @@
     <a href="{{ url('/admin/reservations') }}">Retour aux réservations</a>
 
     @if($reservation->trashed())
-        <h2>Réservation annulée.</h2>
+        <h3 class="text-danger">Réservation annulée.</h3>
     @endif
 
     <h3>Détails de la réservation</h3>

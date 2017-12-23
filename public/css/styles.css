@@ -36,12 +36,16 @@ footer .container .credit p:first-child {
     Datepicker
  */
 .datepicker .day {
-    color : #087e0a !important;
+    color : #087e0a;
     font-weight: normal;
 }
 .datepicker .day.disabled {
-    color : #bd1720 !important;
+    color : #bd1720;
     font-weight: bold;
+}
+.bootstrap-datetimepicker-widget table td.active, .bootstrap-datetimepicker-widget table td.active:hover {
+    background-color: #d1eaff;
+    color: #fff;
 }
 
 /*
@@ -86,9 +90,14 @@ footer .container .credit p:first-child {
     background-color: #bfa56f;
     color : white;
     padding : 30px 20px 30px 20px;
+    border: 1px solid #977b43;
+    border-top : none;
 }
 .sidebar .reservation-btn {
     margin-bottom: 30px;
+}
+.sidebar #place {
+    margin-bottom: 10px;
 }
 .datepicker {
     color: #333;
@@ -107,6 +116,30 @@ footer .container .credit p:first-child {
     background-color: #4f8227;
     border-color: #487724;
 }
+
+@media(max-width:767px){
+    .sidebar {
+
+    }
+}
+@media(min-width:768px){
+    .sidebar {
+
+    }
+}
+@media(min-width:992px){
+    .sidebar {
+        position : fixed;
+        width : 293px;
+    }
+}
+@media(min-width:1200px){
+    .sidebar {
+        position: fixed;
+        width : 360px;
+    }
+}
+
 
 
 /*
@@ -127,4 +160,12 @@ footer .container .credit p:first-child {
 .page-form {
     margin-top: 20px;
     margin-bottom: 50px;
+}
+
+
+/*
+    Visitors' book
+ */
+.book-section h3 {
+    font-family : 'Gabriela', serif;
 }

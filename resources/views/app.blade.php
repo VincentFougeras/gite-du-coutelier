@@ -31,10 +31,6 @@
     {!! Html::script('js/moment.js') !!}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/locale/fr.js"></script>
 
-    <!-- Custom style for this template -->
-    {!! Html::style('css/sticky-footer.css') !!}
-    {!! Html::style('css/styles.css') !!}
-
     <!-- transition and collapse -->
     {!! Html::script('js/transition.js') !!}
     {!! Html::script('js/collapse.js') !!}
@@ -42,6 +38,10 @@
     <!-- Datetime picker -->
     {!! Html::script('js/bootstrap-datetimepicker.js') !!}
     {!! Html::style('css/bootstrap-datetimepicker.min.css') !!}
+
+    <!-- Custom style for this template -->
+    {!! Html::style('css/sticky-footer.css') !!}
+    {!! Html::style('css/styles.css') !!}
 
 
     <!-- Stripe -->

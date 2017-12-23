@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -33,6 +34,7 @@ class HomeController extends Controller
                      ->with('user')
                      ->paginate(10);
 
+        Carbon::setLocale('fr');
         return view('home.visitors-book', compact('books'));
     }
 

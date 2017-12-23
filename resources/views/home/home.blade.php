@@ -5,26 +5,7 @@
 
     <div class="row">
 
-        <div class="sidebar col-sm-4 col-sm-push-8">
-
-            <div class="sidebar-module">
-                <a class="reservation-btn btn-lg btn-block btn btn-primary btn-reserver" href="{{ URL::to('/reservation/choice') }}">Réserver</a>
-            </div>
-            <hr/>
-            <div class="sidebar-module">
-                <h4>Dates de disponibilité</h4>
-                <div>
-                    {!! Form::label('place', 'Choisissez un lieu :') !!}
-                    {!! Form::select('place', array(1 => 'Chalet', 0 => 'Extension'), null, ['class' => 'form-control', 'id' => 'place']) !!}
-                </div>
-                <div>
-                    <div id="date"></div>
-                </div>
-            </div>
-
-        </div><!-- /.blog-sidebar -->
-
-        <div class="col-sm-8 col-sm-pull-4">
+        <div class="col-md-8">
 
             <div>
                 <div id="carousel-gite" class="carousel slide" data-ride="carousel">
@@ -62,6 +43,31 @@
                 </div>
             </div>
 
+        </div>
+
+        <div class="col-md-4 col-lg-4 ">
+            <div class="sidebar">
+                <div class="sidebar-module">
+                    <a class="reservation-btn btn-lg btn-block btn btn-primary btn-reserver" href="{{ URL::to('/reservation/choice') }}">Réserver</a>
+                </div>
+                <hr/>
+                <div class="sidebar-module">
+                    <h4>Dates de disponibilité</h4>
+                    <div>
+                        {!! Form::label('place', 'Choisissez un lieu :') !!}
+                        {!! Form::select('place', array(1 => 'Chalet', 0 => 'Extension'), null, ['class' => 'form-control', 'id' => 'place']) !!}
+                    </div>
+                    <div>
+                        <div id="date"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
             <div>
                 <h2>Le gîte</h2>
                 <p>Le gîte se situe à Fougaron (13 rue Mozart). Fougaron est placé à 1h20 de Foix, Toulouse et Tarbes. A 40min de Saint-Gaudens.</p>
@@ -92,11 +98,7 @@
                 <iframe class="fb_embed_small" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=390501848068246" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
             </div>
 
-
-        </div><!-- /.blog-main -->
-
-
-
+        </div>
     </div><!-- /.row -->
     @include('home.script-date')
 
