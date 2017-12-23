@@ -8,7 +8,8 @@
                 <div class="panel-heading">Connexion</div>
 
                 <div class="panel-body">-->
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                    <h2 style="text-align: center">Se connecter</h2>
+                    <form class="page-form form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -62,8 +63,8 @@
                         </div>
                     </form>
                 <!--</div>
-            </div>
-        </div>-->
+            </div>-->
+        </div>
     </div>
 </div>
 @endsection

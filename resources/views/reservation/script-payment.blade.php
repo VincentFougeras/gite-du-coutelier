@@ -97,9 +97,9 @@
         margin: 0;
     }*/
 
-    html {
+    /*html {
         height: 100%;
-    }
+    }*/
 /*
     body {
         background: #E6EBF1;

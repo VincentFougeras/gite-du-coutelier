@@ -5,14 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Le gite du Coutelier</title>
+    <title>Le gîte du Coutelier</title>
 
     <!-- Bootstrap -->
     {{Html::style("bootstrap/css/bootstrap.min.css")}}
     {{Html::style("bootstrap/css/bootstrap-theme.min.css")}}
 
+    {{Html::style("bootstrap/css/bootstrap-flat.min.css")}}
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -29,6 +32,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/locale/fr.js"></script>
 
     <!-- Custom style for this template -->
+    {!! Html::style('css/sticky-footer.css') !!}
     {!! Html::style('css/styles.css') !!}
 
     <!-- transition and collapse -->
@@ -45,6 +49,8 @@
 </head>
 
 <body>
+
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -54,7 +60,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ URL::to('/') }}">Le Gite du Coutelier</a>
+            <a class="navbar-brand" href="{{ URL::to('/') }}">Le Gîte du Coutelier</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -73,7 +79,7 @@
 
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li class="{{ Request::path() == 'login' ? 'active' : '' }}"><a href="{{ route('login') }}">Login</a></li>
+                        <li class="{{ Request::path() == 'login' ? 'active' : '' }}"><a href="{{ route('login') }}">Connexion</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -117,6 +123,17 @@
 <div class="container content">
     @yield('content')
 </div>
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="text-muted credit">
+            <p>Copyright © 2017-{{ Carbon\Carbon::now()->year }} François Virga</p>
+            <p>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+            </p>
+        </div>
+    </div>
+</footer>
 
 <script>
     $(function () {

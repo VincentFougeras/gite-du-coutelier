@@ -11,8 +11,8 @@
     ?>
 
     <div class="row">
-        <div class="col-md-6">
-            {!! Form::open(['url' =>  $postUrl, 'id' => 'payment-form', 'files' => true]) !!}
+        <div class="col-md-8 col-md-offset-2">
+            {!! Form::open(['url' =>  $postUrl, 'id' => 'payment-form', 'files' => true, 'class' => 'page-form']) !!}
             @include('flash')
             <div class="form-group">
                 {!! Form::label('place', 'Lieu de réservation :') !!}
@@ -95,7 +95,7 @@
                 <div class="error"></div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Réserver pour <span id="price">0</span>€</button>
+            <button type="submit" class="btn btn-primary btn-block">Réserver pour <span id="price">0</span>€</button>
 
 
             {!! Form::close() !!}

@@ -3,7 +3,7 @@
 @section('content')
     <h1>Contact</h1>
 
-    <p>Vous pouvez me contacter par téléphone au {{ env("PHONE_FRANCOIS") }}.</p>
+    <p>Vous pouvez aussi me contacter par téléphone au <strong>{{ env("PHONE_FRANCOIS") }}</strong>.</p>
 
     @include("flash")
 

@@ -5,13 +5,12 @@
 
     <div class="row">
 
-        <div class="col-sm-3 col-sm-offset-1 col-sm-push-8">
+        <div class="sidebar col-sm-4 col-sm-push-8">
 
             <div class="sidebar-module">
-                <h4>Réservation</h4>
-                <a class="btn btn-primary" href="{{ URL::to('/reservation/choice') }}">Réserver</a>
+                <a class="reservation-btn btn-lg btn-block btn btn-primary btn-reserver" href="{{ URL::to('/reservation/choice') }}">Réserver</a>
             </div>
-
+            <hr/>
             <div class="sidebar-module">
                 <h4>Dates de disponibilité</h4>
                 <div>
@@ -64,15 +63,15 @@
             </div>
 
             <div>
-                <h2>Le gite</h2>
-                <p>Le gite se situe à Fougaron (13 rue Mozart). Fougaron est placé à 1h20 de Foix, Toulouse et Tarbes. A 40min de Saint-Gaudens.</p>
+                <h2>Le gîte</h2>
+                <p>Le gîte se situe à Fougaron (13 rue Mozart). Fougaron est placé à 1h20 de Foix, Toulouse et Tarbes. A 40min de Saint-Gaudens.</p>
 
 
                 <p>Si vous avez des questions, vous pouvez me contacter par téléphone au {{ env("PHONE_FRANCOIS") }}.</p>
 
                 <p><i>Infos basiques intérieur / extérieur</i></p>
 
-                <p>Le gite comporte 2 emplacements :</p>
+                <p>Le gîte comporte 2 emplacements :</p>
                 <ul>
                     <li>Le châlet, qui peut accueillir jusqu'à 4 personnes</li>
                     <li>L'extension, qui peut accueillir jusqu'à 6 personnes</li>
@@ -83,7 +82,7 @@
 
             <div>
                 <h2>Les lieux et dates de réservation</h2>
-                <p>Le gite est en pleine saison entre mai et septembre. Vous pouvez réserver un emplacement pour une ou plusieurs semaines quelque soit la saison.
+                <p>Le gîte est en pleine saison entre mai et septembre. Vous pouvez réserver un emplacement pour une ou plusieurs semaines quelque soit la saison.
                     De plus, en hors saison, vous pouvez réserver un week-end au chalet.</p>
             </div>
 
