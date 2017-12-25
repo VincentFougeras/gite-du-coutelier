@@ -36,7 +36,7 @@
                     </blockquote>
 
                     @if(Auth::check() && ($book->user->id === Auth::user()->id || Auth::user()->is_admin))
-                        {!! Form::open(['method' => 'DELETE', 'url' => ['visitors-book', $book->id]]) !!}
+                        {!! Form::open(['method' => 'DELETE', 'url' => ['visitors-book', $book->id], 'onsubmit' => 'return confirmDeletion()']) !!}
                         {!! Form::submit('Supprimer l\'avis', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     @endif
@@ -47,4 +47,10 @@
 
         </div>
     </div>
+
+    <script>
+        function confirmDeletion(){
+            return confirm("Etes-vous sûr de vouloir supprimer cet avis ?");
+        }
+    </script>
 @endsection

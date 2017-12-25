@@ -35,19 +35,52 @@
     </table>
 
     <p>La réservation peut être annulée
-        <a href="#" data-toggle="popover" data-content="<ul><li>2 semaines avant pour une semaine en pleine saison</li><li>1 semaine avant pour une semaine hors saison</li><li>1 jour avant pour un week-end</li></ul>">
+        <a id="time-until" href="#" data-toggle="popover" data-content="<ul><li>2 semaines avant pour une semaine en pleine saison</li><li>1 semaine avant pour une semaine hors saison</li><li>1 jour avant pour un week-end</li></ul>">
             jusqu'à un certain temps</a> avant la date du séjour.</p>
     <p>Si vous annulez la réservation, la somme payée vous sera remboursée.</p>
     @if($is_cancellable)
         {!! Form::open(['method' => 'DELETE', 'url' => ['my/reservation', $reservation->id]]) !!}
-        {!! Form::submit('Annuler la réservation', ['class' => 'btn btn-danger']) !!}
+        {!! Form::submit('Annuler la réservation', ['class' => 'btn btn-danger', 'id' => 'delete-btn']) !!}
         {!! Form::close() !!}
     @endif
 
+    <div style="display: none;" id="dialog-confirm" title="Annuler la réservation ?">
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Etes vous sûr de vouloir annuler votre réservation ?</p>
+    </div>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script>
-        $(function () {
-            $('[data-toggle="popover"]').popover({html : true, placement : 'top'});
-        })
+        $(document).ready(function() {
+            $('#time-until').popover({html : true, placement : 'top'});
+
+            $("#dialog-confirm").dialog({
+                autoOpen: false,
+                modal: true
+            });
+
+            $("#delete-btn").click(function(e){
+                e.preventDefault();
+
+                $( "#dialog-confirm" ).dialog({
+                    buttons: {
+                        "Annuler la réservation": function() {
+                            $( this ).dialog( "close" );
+                            $('#delete-btn').trigger("click.confirmed");
+                        },
+                        "Retour": function() {
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                });
+
+                $("#dialog-confirm").dialog("open");
+            })
+
+        });
+
+
     </script>
 
 @endsection
