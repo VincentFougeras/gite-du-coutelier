@@ -73,7 +73,7 @@
                 <p>Le gîte se situe à Fougaron (13 rue Mozart). Fougaron est placé à 1h20 de Foix, Toulouse et Tarbes. A 40min de Saint-Gaudens.</p>
 
 
-                <p>Si vous avez des questions, vous pouvez me contacter par téléphone au {{ env("PHONE_FRANCOIS") }}.</p>
+                <p>Si vous avez des questions, vous pouvez me contacter par téléphone au <strong>{{ env("PHONE_FRANCOIS") }}</strong>.</p>
 
                 <p><i>Infos basiques intérieur / extérieur</i></p>
 

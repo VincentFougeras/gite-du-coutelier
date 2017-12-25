@@ -31,7 +31,9 @@
                         <small>{{ $book->created_at->diffForHumans() }}</small>
                     </h3>
 
-                    <p class="book-content">{{ $book->content }}</p>
+                    <blockquote>
+                        <p class="book-content">{{ $book->content }}</p>
+                    </blockquote>
 
                     @if(Auth::check() && ($book->user->id === Auth::user()->id || Auth::user()->is_admin))
                         {!! Form::open(['method' => 'DELETE', 'url' => ['visitors-book', $book->id]]) !!}

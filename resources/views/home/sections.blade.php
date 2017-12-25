@@ -20,9 +20,10 @@
         @endif
 
         <div class="row">
-            <div class="col-md-8 {{ $cpt % 2 == 1 ? 'col-md-push-4' : '' }}">
-                <h3>{{ $section->title }}</h3>
-                <p>{{ $section->created_at->diffForHumans() }}</p>
+            <div class="activite-section col-md-8 {{ $cpt % 2 == 1 ? 'col-md-push-4' : '' }}">
+                <h3>{{ $section->title }}
+                    <small>{{ $section->created_at->diffForHumans() }}</small>
+                </h3>
                 <p>{!! $section->content !!}</p>
             </div>
             <div class="col-md-4 {{ $cpt % 2 == 1 ? 'col-md-pull-8' : '' }}">
@@ -35,6 +36,8 @@
                 @endif
             </div>
         </div>
+
+        <hr/>
 
         <?php $cpt++; ?>
     @endforeach

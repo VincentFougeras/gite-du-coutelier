@@ -16,6 +16,7 @@ class SectionController extends Controller
                            ->paginate(10);
 
         Carbon::setToStringFormat('d/m/Y');
+        Carbon::setLocale('fr');
 
         return view('home.sections', compact('sections'));
     }

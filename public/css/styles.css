@@ -8,29 +8,6 @@ h1, h2 {
     font-family: 'Gabriela', serif;
 }
 
-/*
-footer {
-    background-color: #463d2d;
-    color : #bdb0a8;
-}
-footer a {
-    color : #bdbdbd;
-    text-decoration: underline;
-}
-footer a:hover {
-    color : #bdbdbd;
-}*/
-footer {
-    background-color: #f9f9f9;
-}
-footer .container .credit {
-    margin: 20px 0;
-    text-align: center;
-}
-
-footer .container .credit p:first-child {
-    font-size: 1.1em;
-}
 
 /*
     Datepicker
@@ -61,6 +38,35 @@ footer .container .credit p:first-child {
 
 .navbar-brand {
     font-family: 'Gabriela', serif;
+}
+.navbar-brand:hover {
+    color : #fff !important;
+}
+
+/* Hamburger menu */
+.navbar-default .navbar-toggle {
+    border-color : #eee;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #eee;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #eeeeee44;
+}
+
+/*
+    Footer
+ */
+footer {
+    background-color: #f9f9f9;
+}
+footer .container .credit {
+    margin: 20px 0;
+    text-align: center;
+}
+
+footer .container .credit p:first-child {
+    font-size: 1.1em;
 }
 
 /*
@@ -166,6 +172,16 @@ footer .container .credit p:first-child {
 /*
     Visitors' book
  */
+.book-section {
+    margin-bottom: 30px;
+}
 .book-section h3 {
+    font-family : 'Gabriela', serif;
+}
+
+/*
+    Activities
+ */
+.activite-section h3 {
     font-family : 'Gabriela', serif;
 }

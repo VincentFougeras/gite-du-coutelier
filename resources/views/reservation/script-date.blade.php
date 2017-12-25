@@ -77,10 +77,10 @@
                 success: function(data){
                     $('#price').html(data.msg / 100);
                     if(data.msg == 0){
-                        $('button').prop('disabled', true);
+                        $('form button').prop('disabled', true);
                     }
                     else {
-                        $('button').prop('disabled', false);
+                        $('form button').prop('disabled', false);
                     }
                 },
                 complete: function(){
@@ -89,7 +89,7 @@
         }
         else {
             $('#price').html(0);
-            $('button').prop('disabled', true);
+            $('form button').prop('disabled', true);
         }
     }
 

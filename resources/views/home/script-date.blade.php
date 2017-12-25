@@ -41,7 +41,7 @@
             data: {'place' : $('#place').find('option:selected').prop('value')},
             type: "GET",
             success: function(data){
-                console.log(data.msg);
+                //console.log(data.msg);
                 $('#date').data("DateTimePicker").disabledDates(data.msg);
             },
             complete: function(){

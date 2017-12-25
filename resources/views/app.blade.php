@@ -69,7 +69,7 @@
                 <li class="{{ Request::path() == 'reservation/choice' ? 'active' : '' }}"><a href="{{ URL::to('/reservation/choice') }}">Réservation</a></li>
                 <li class="{{ Request::path() == 'visitors-book' ? 'active' : '' }}"><a href="{{ URL::to('/visitors-book') }}">Livre d'or</a></li>
                 <li class="{{ Request::path() == 'activites' ? 'active' : '' }}"><a href="{{ URL::to('/activites') }}">Les activités</a></li>
-                <li id="contact-li" class="{{ Request::path() == 'contact' ? 'active' : '' }} data-toggle="popover" data-container="body"
+                <li id="contact-li" class="{{ Request::path() == 'contact' ? 'active' : '' }}" data-toggle="popover" data-container="body"
                     data-content="<span class='glyphicon glyphicon-earphone' aria-hidden='true'></span> {{ env('PHONE_FRANCOIS') }}">
                     <a href="{{ URL::to('/contact') }}">Contact</a>
                 </li>
