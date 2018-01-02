@@ -52,7 +52,7 @@ class ReservationController extends Controller
 
             $reservedDaysArray = $this->reservedDays($data['place'] == 1);
 
-            $reservedDaysArray = array_merge($reservedDaysArray, $this->summerDays());
+            //$reservedDaysArray = array_merge($reservedDaysArray, $this->summerDays());
             $reservedDays = '';
             foreach($reservedDaysArray as $day){
                 $reservedDays .= '"' . $day . '", ';

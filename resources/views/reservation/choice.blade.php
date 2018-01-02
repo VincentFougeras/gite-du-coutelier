@@ -18,7 +18,12 @@
                 {!! Form::label('place', 'Lieu de réservation :') !!}
                 {!! Form::select('place', array(1 => 'Chalet', 0 => 'Extension'), null, ['class' => 'form-control', 'id' => 'place']) !!}
             </div>
-            <p>Réservations : du lundi au dimanche (6 nuits) renouvelable sur plusieurs semaines, ou du vendredi au dimanche (2 nuits)</p>
+            <div class="alert alert-info"><strong>Comment choisir ses dates</strong>
+                <ul>
+                    <li>Par défaut : <strong>du lundi au dimanche (6 nuits)</strong> renouvelable sur plusieurs semaines</li>
+                    <li>En hiver (semaines 39 à 18), dans le chalet uniquement : <strong>du vendredi au dimanche (2 nuits)</strong></li>
+                </ul>
+            </div>
             <div class="row" id="dates">
                 <div class='col-sm-6'>
                     <div class="form-group">

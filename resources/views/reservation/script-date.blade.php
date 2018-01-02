@@ -6,12 +6,14 @@
         //console.log( {! $reservedDays !!} );
         // Link calendars together
         $('#begin_group').datetimepicker({
+            calendarWeeks : true,
             format : 'DD/MM/YYYY',
             minDate : {!! '"' . Carbon\Carbon::now()->toDateString() . '"' !!},
             maxDate : {!! '"' . Carbon\Carbon::now()->addYears(2)->toDateString() . '"' !!}
         });
         $('#end_group').datetimepicker({
             useCurrent: false, //Important! See issue #1075
+            calendarWeeks : true,
             format : 'DD/MM/YYYY',
             minDate : {!! '"' . Carbon\Carbon::now()->toDateString() . '"' !!},
             maxDate : {!! '"' . Carbon\Carbon::now()->addYears(2)->toDateString() . '"' !!}
@@ -25,7 +27,7 @@
         $("#begin_group").on("dp.change", function (e) {
             $('#end_group').data("DateTimePicker").minDate(e.date);
             $('#end_group > input').val("");
-            var selectedDate = moment($("#begin_group > input").val(), "DD/MM/YYYY");
+            /*var selectedDate = moment($("#begin_group > input").val(), "DD/MM/YYYY");
             if(selectedDate.day() === 5){
                 var nextSunday = moment($("#begin_group > input").val(), "DD/MM/YYYY").add(2, 'days');
                 $('#end_group').data("DateTimePicker").daysOfWeekDisabled(oldDays);
@@ -37,7 +39,7 @@
             }
             else {
                 $('#end_group').data("DateTimePicker").daysOfWeekDisabled(oldDays);
-            }
+            }*/
 
 
         });
@@ -52,13 +54,56 @@
         });
 
         $("#begin_group").on("dp.change", function (e) {
+            correctDates();
             updatePrice();
         });
         $("#end_group").on("dp.change", function () {
+            correctDates();
             updatePrice();
         });
 
     });
+
+    // Modifier les dates sélectionnées pour qu'elles soient les plus proches de ce que l'utilisateur a sélectionné
+    function correctDates(){
+        var beginDate = $("#begin_group").data("DateTimePicker").date();
+        var endDate = $("#end_group").data("DateTimePicker").date();
+
+
+        // Week end autorisé dans le chalet hors saison
+        if(beginDate !== null){
+            if((beginDate.week() < 18 || beginDate.week() > 39) && $("#place").val() == 1){
+                if(beginDate.day() >= 5 || beginDate.day() === 0){
+                    if(beginDate.day() === 0){         // Dimanche == premier jour de la semaine suivante
+                        $("#begin_group").data("DateTimePicker").date(beginDate.subtract(7, 'days'));
+                    }
+                    $("#begin_group").data("DateTimePicker").date(beginDate.day(5));
+                }
+                else {
+                    $("#begin_group").data("DateTimePicker").date(beginDate.day(1));
+                }
+            }
+            else {
+                // Semaine normale
+                if(beginDate.day() === 0){         // Dimanche == premier jour de la semaine suivante
+                    $("#begin_group").data("DateTimePicker").date(beginDate.subtract(5, 'days'));
+                }
+                else {
+                    $("#begin_group").data("DateTimePicker").date(beginDate.day(1));
+                }
+
+            }
+        }
+
+
+        if(endDate !== null){
+            if(endDate.day() !== 0){
+                $("#end_group").data("DateTimePicker").date(endDate.add(7, 'days').day(0));
+            }
+        }
+
+
+    }
 
     // Mettre à jour le prix en fonction du lieu et des dates
     function updatePrice(){
@@ -101,18 +146,18 @@
                 $('#nb_people').val(4);
             }
 
-            $('#begin_group').data("DateTimePicker").daysOfWeekDisabled([0,2,3,4,6]);
-            $('#end_group').data("DateTimePicker").daysOfWeekDisabled([1,2,3,4,5,6]);
-            $('#end_group').data("DateTimePicker").enabledDates(false);
-            oldDays = [1,2,3,4,5];
+            //$('#begin_group').data("DateTimePicker").daysOfWeekDisabled([0,2,3,4,6]);
+            //$('#end_group').data("DateTimePicker").daysOfWeekDisabled([1,2,3,4,5,6]);
+            //$('#end_group').data("DateTimePicker").enabledDates(false);
+            //oldDays = [1,2,3,4,5];
         }
         else { // Extension
             $('.nb_people_extension').show();
 
-            $('#begin_group').data("DateTimePicker").daysOfWeekDisabled([0,2,3,4,5,6]);
-            $('#end_group').data("DateTimePicker").daysOfWeekDisabled([1,2,3,4,5,6]);
-            $('#end_group').data("DateTimePicker").enabledDates(false);
-            oldDays = [1,2,3,4,5,6];
+            //$('#begin_group').data("DateTimePicker").daysOfWeekDisabled([0,2,3,4,5,6]);
+            //$('#end_group').data("DateTimePicker").daysOfWeekDisabled([1,2,3,4,5,6]);
+            //$('#end_group').data("DateTimePicker").enabledDates(false);
+            //oldDays = [1,2,3,4,5,6];
         }
     }
 
