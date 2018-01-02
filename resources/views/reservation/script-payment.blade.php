@@ -34,6 +34,8 @@
         } else if (result.error) {
             errorElement.textContent = result.error.message;
             errorElement.classList.add('visible');
+            $('form button').prop('disabled', false);
+            $('#spinner').hide();
         }
     }
 
@@ -44,6 +46,9 @@
     var form = document.getElementById('payment-form');
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+
+        $('form button').prop('disabled', true);
+        $('#spinner').show();
 
         var extraDetails = {
             name: form.querySelector('input[name=name]').value,

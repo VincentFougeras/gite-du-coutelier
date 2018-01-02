@@ -70,6 +70,16 @@ footer .container .credit p:first-child {
 }
 
 /*
+    Reservation
+ */
+#spinner img {
+    height : 50px;
+    position : relative;
+    top : -8px;
+    display : none;
+}
+
+/*
     Admin
  */
 .reservation_tr:hover {
