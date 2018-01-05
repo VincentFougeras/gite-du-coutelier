@@ -134,7 +134,6 @@
 
     <div class="row">
         <div class="col-md-8">
-
             <div class="form-group">
                 <label for="card-element">Informations de paiement</label>
                 <div id="card-element" class="field"></div>
@@ -142,7 +141,11 @@
             <div class="outcome">
                 <div class="error"></div>
             </div>
-
+        </div>
+        <div class="col-md-4">
+            <div class="alert alert-info">Le code postal correspond à votre adresse de paiement. En général, cette adresse
+                correspond à votre lieu de résidence.
+            </div>
         </div>
     </div>
 

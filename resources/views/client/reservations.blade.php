@@ -6,7 +6,7 @@
 
     @include('flash')
 
-    <table class="table table-hover">
+    <table class="table table-hover top-margin">
         <tr><th>Date de début</th><th>Date de fin</th><th>Coût</th><th>Lieu</th><th>Nombre de résidents</th></tr>
     @foreach($reservations as $reservation)
         <tr class="reservation_tr" {!! $cpt == 0 ? 'data-toggle="tooltip" data-placement="bottom" title="Plus de détails"' : '' !!}>

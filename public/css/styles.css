@@ -22,8 +22,9 @@ h1, h2 {
 }
 .bootstrap-datetimepicker-widget table td.active, .bootstrap-datetimepicker-widget table td.active:hover {
     background-color: #d1eaff;
-    color: #fff;
+    color: #087e0a;
 }
+
 
 /*
     Navbar
@@ -194,4 +195,7 @@ footer .container .credit p:first-child {
  */
 .activite-section h3 {
     font-family : 'Gabriela', serif;
+}
+.top-margin {
+    margin-top: 20px;
 }

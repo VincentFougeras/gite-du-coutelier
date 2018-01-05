@@ -539,7 +539,7 @@ class ReservationController extends Controller
             $this->sendMail($user, $reservation);
         }
         catch (\Exception $ex) {
-            return redirect(url('/reservation/done/' . $reservation->id))->withErrors(['error' => "Le mail n'a pas pu être envoyé.", 'message' => $ex->getMessage()]);
+            return redirect(url('/reservation/done/' . $reservation->id))->withErrors(['error' => "Le mail de confirmation n'a pas pu être envoyé.", 'message' => $ex->getMessage()]);
         }
 
         return redirect(url('/reservation/done/' . $reservation->id));

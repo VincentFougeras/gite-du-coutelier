@@ -2,7 +2,9 @@
 
 @section('content')
 
-    <a href="{{ url('/admin/reservations') }}">Retour aux réservations</a>
+    <a  href="{{ url('/admin/reservations') }}">
+        <span class="glyphicon glyphicon-arrow-left top-margin" aria-hidden="true"></span>
+        Retour aux réservations</a>
 
     @if($reservation->trashed())
         <h3 class="text-danger">Réservation annulée.</h3>

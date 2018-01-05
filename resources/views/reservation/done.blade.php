@@ -2,21 +2,42 @@
 
 
 @section('content')
-    @if($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+    @include('flash')
+
+    <h2>La réservation a été effectuée !</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <p>{{ $reservation->user->name }}, vous avez effectué une réservation dans {{($reservation->is_chalet ? 'le chalet' : 'l\'extension')}}.</p>
+            <p>Vous pouvez désormais
+                <a href="{{ url('/my/reservations') }}" target="_blank">accéder aux détails de votre réservation</a>,
+                <a href="{{ url('/contact') }}" target="_blank">nous contacter</a>, ou
+                <a href="{{ url('/visitors-book') }}" target="_blank">écrire sur le livre d'or après votre séjour</a>.</p>
         </div>
-    @endif
+        <div class="col-md-6">
+            <table class="table">
+                <tr>
+                    <th>Date de début</th>
+                    <td>{{ $reservation->beginning }}</td>
+                </tr>
+                <tr>
+                    <th>Date de fin</th>
+                    <td>{{ $reservation->end }}</td>
+                </tr>
+                <tr>
+                    <th>Coût</th>
+                    <td>{{ $reservation->amount / 100 }}€</td>
+                </tr>
+                <tr>
+                    <th>Lieu</th>
+                    <td>{{ $reservation->is_chalet ? "Le chalet" : "L'extension" }}</td>
+                </tr>
+                <tr>
+                    <th>Nb. de résidents</th>
+                    <td>{{ $reservation->number_of_people }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
-    Réservation effectuée :
-    {{ $reservation->user->name }}, vous avez effectué une réservation
-    {{ 'du ' . $reservation->beginning . ' au ' . $reservation->end
-                        . ' dans ' . ($reservation->is_chalet ? 'le chalet' : 'l\'extension') . ' pour ' . $reservation->number_of_people . ' personnes.'}}
-    Prix de la réservation : {{ $reservation->amount/100 }}€
-
-    <p>Vous pouvez revenir voir vos réservations en vous reconnectant au site.</p>
 @endsection

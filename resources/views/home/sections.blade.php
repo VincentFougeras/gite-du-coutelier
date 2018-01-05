@@ -5,7 +5,8 @@
     @include('flash')
 
     @if(Auth::check() && Auth::user()->is_admin)
-        <div><a href="{{ url('admin/section/add') }}" class="btn btn-default">Ajouter une section</a></div>
+        <div><a href="{{ url('admin/section/add') }}" class="top-margin btn btn-primary">Ajouter une section</a></div>
+        <hr/>
     @endif
 
     <?php $cpt = 0; ?>

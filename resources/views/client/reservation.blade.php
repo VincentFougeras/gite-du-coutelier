@@ -2,7 +2,9 @@
 
 @section('content')
 
-    <a href="{{ url('/my/reservations') }}">Retour aux réservations</a>
+    <a  href="{{ url('/my/reservations') }}">
+        <span class="glyphicon glyphicon-arrow-left top-margin" aria-hidden="true"></span>
+        Retour aux réservations</a>
 
     @include('flash')
 

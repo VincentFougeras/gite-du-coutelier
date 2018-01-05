@@ -140,6 +140,7 @@ return [
         'second'                => 'seconde',
         'title'                 => 'titre',
         'content'               => 'contenu',
+        'book_content'          => 'contenu',
         'description'           => 'description',
         'excerpt'               => 'extrait',
         'date'                  => 'date',

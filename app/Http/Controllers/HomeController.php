@@ -97,17 +97,27 @@ class HomeController extends Controller
                 ->withErrors(['message' => 'Tous les champs requis doivent être remplis.']);
         }
         else {
-            $dest = env('EMAIL_FRANCOIS');
+            try {
+                $dest = env('EMAIL_FRANCOIS');
 
-            // Here a possibility of using queue with nohup
-            Mail::send(['text' => 'emails.contact'], compact('mes'), function($message) use ($email, $name, $dest, $subject){
-                $message->from($email, $name)
-                    ->to($dest)
-                    ->subject('[Contact] ' . $subject);
-            });
+                // Here a possibility of using queue with nohup
+                Mail::send(['text' => 'emails.contact'], compact('mes'), function($message) use ($email, $name, $dest, $subject){
+                    $message->from($email, $name)
+                        ->to($dest)
+                        ->subject('[Contact] ' . $subject);
+                });
 
-            Session::flash('success', 'Le message a été envoyé.');
-            return redirect(url('contact'));
+                Session::flash('success', 'Le message a été envoyé.');
+                return redirect(url('contact'));
+            }
+            catch (\Exception $ex) {
+                return redirect()->back()
+                    ->withInput()
+                    ->withErrors(['message' => 'Le message n\'a pas pu être envoyé.']);
+            }
+
+
+
         }
     }
 
