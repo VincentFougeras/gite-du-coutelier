@@ -18,7 +18,10 @@
             @include('flash')
             <div class="form-group">
                 {!! Form::label('place', 'Lieu de réservation :') !!}
-                {!! Form::select('place', array(1 => 'Chalet', 0 => 'Extension'), null, ['class' => 'form-control', 'id' => 'place']) !!}
+                <select class="form-control" id="place" name="place">
+                    <option value="1">Chalet</option>
+                    <option value="0" disabled>Extension (pas encore disponible)</option>
+                </select>
             </div>
         </div>
     </div>
