@@ -577,9 +577,9 @@ class ReservationController extends Controller
      */
     private function sendMail(User $user, Reservation $reservation){
         $fromName = "Gite du Coutelier";
-        $fromEmail = "reservation@gite-du-coutelier.fr";
+        $fromEmail = "reservation@gite-du-coutelier.fr"; //TODO change email
 
-        $subject = "Votre réservation a été enregistrée";
+        $subject = "Votre réservation a été effectuée";
         $to = $user->email;
         $bcc = env('EMAIL_FRANCOIS');
 
