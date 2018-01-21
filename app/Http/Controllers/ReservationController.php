@@ -208,7 +208,8 @@ class ReservationController extends Controller
                             return self::PRICE_CHALET_WEEK_PLEINE_SAISON;
                         }
                         else {
-                            return self::PRICE_EXTENSION_WEEK_PLEINE_SAISON;
+                            //return self::PRICE_EXTENSION_WEEK_PLEINE_SAISON;
+                            return 0;
                         }
                     }
                     else { // Pas de w-e seul accepté
@@ -222,7 +223,8 @@ class ReservationController extends Controller
                             return self::PRICE_CHALET_WEEK_HORS_SAISON;
                         }
                         else {
-                            return self::PRICE_EXTENSION_WEEK_HORS_SAISON;
+                            //return self::PRICE_EXTENSION_WEEK_HORS_SAISON;
+                            return 0;
                         }
                     }
                     else {
@@ -245,7 +247,7 @@ class ReservationController extends Controller
                                 $amount += self::PRICE_CHALET_WEEK_PLEINE_SAISON;
                             }
                             else {
-                                $amount += self::PRICE_EXTENSION_WEEK_PLEINE_SAISON;
+                                //$amount += self::PRICE_EXTENSION_WEEK_PLEINE_SAISON;
                             }
                         }
                         else { // Hors saison
@@ -253,7 +255,7 @@ class ReservationController extends Controller
                                 $amount += self::PRICE_CHALET_WEEK_HORS_SAISON;
                             }
                             else {
-                                $amount += self::PRICE_EXTENSION_WEEK_HORS_SAISON;
+                                //$amount += self::PRICE_EXTENSION_WEEK_HORS_SAISON;
                             }
                         }
                     }
@@ -281,7 +283,7 @@ class ReservationController extends Controller
         * Validation of the $request
         */
         $validator = \Validator::make($request->all(), [
-            'place' => 'required|in:0,1',
+            'place' => /*'required|in:0,1',*/ 'required|in:1',
             'nb_people' => ['required', 'integer' , ($request->place == 1 ? 'between:1,4' : 'between:1,6')],
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -441,7 +443,7 @@ class ReservationController extends Controller
         * Validation of the $request
         */
         $validator = \Validator::make($request->all(), [
-            'place' => 'required|in:0,1',
+            'place' => /*'required|in:0,1', */ 'required|in:1',
             'nb_people' => ['required', 'integer' , ($request->place == 1 ? 'between:1,4' : 'between:1,6')],
             'name' => 'required|string|max:255',
         ]);

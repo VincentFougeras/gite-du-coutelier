@@ -55,7 +55,10 @@
                     <h4>Dates de disponibilité</h4>
                     <div>
                         {!! Form::label('place', 'Choisissez un lieu :') !!}
-                        {!! Form::select('place', array(1 => 'Chalet', 0 => 'Extension'), null, ['class' => 'form-control', 'id' => 'place']) !!}
+                        <select class="form-control" id="place" name="place">
+                            <option value="1">Chalet</option>
+                            <option value="0" disabled>Extension (pas encore disponible)</option>
+                        </select>
                     </div>
                     <div>
                         <div id="date"></div>

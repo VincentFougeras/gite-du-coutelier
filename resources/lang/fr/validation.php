@@ -147,6 +147,7 @@ return [
         'time'                  => 'heure',
         'available'             => 'disponible',
         'size'                  => 'taille',
+        'place'                 => 'lieu de réservation',
     ],
 
 ];
