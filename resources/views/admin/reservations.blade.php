@@ -2,7 +2,9 @@
 
 @section('content')
 
-    <table class="table table-hover top-margin">
+    <p class="top-margin"><a href="{{ url('admin/reservation/make') }}">Faire une fausse réservation</a></p>
+
+    <table class="table table-hover">
         <tr><th>Date de début</th><th>Date de fin</th><th>Coût</th><th>Lieu</th><th>Nb. de résidents</th><th>Utilisateur</th></tr>
     @foreach($reservations as $reservation)
         <tr {!! $reservation->trashed() ? 'class="reservation_tr reservation_annulee"' : 'class="reservation_tr"'  !!}>

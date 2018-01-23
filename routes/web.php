@@ -52,6 +52,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function(){
     Route::get('reservations', 'AdminController@reservations');
     Route::get('reservation/{reservation_id}', 'AdminController@reservation')->where('reservation_id', '[0-9]+');
 
+    Route::get('reservation/make', 'ReservationController@makeFake');
+    Route::post('reservation/make', 'ReservationController@acceptFake');
+
     Route::get('section/add', 'SectionController@addForm');
     Route::post('section', 'SectionController@add');
     Route::get('section/{section_id}', 'SectionController@updateform')->where('section_id', '[0-9]+');

@@ -79,21 +79,26 @@ class ClientController extends Controller
 
     public function is_cancellable($reservation)
     {
-        $beginning = $reservation->beginning;
-
-        $diffInDays = Carbon::now()->diffInDays($beginning, false);
-
-        if($beginning->weekOfYear >= 18 && $beginning->weekOfYear <= 39){
-            // Semaine pleine saison
-            $cancellable = $diffInDays >= 14;
-        }
-        else if($beginning->dayOfWeek == 1) {
-            // Semaine hors saison
-            $cancellable = $diffInDays >= 7;
+        if(Auth::check() && Auth::user()->is_admin){
+            $cancellable = true;
         }
         else {
-            // Week-end hors saison
-            $cancellable = $diffInDays >= 1;
+            $beginning = $reservation->beginning;
+
+            $diffInDays = Carbon::now()->diffInDays($beginning, false);
+
+            if($beginning->weekOfYear >= 18 && $beginning->weekOfYear <= 39){
+                // Semaine pleine saison
+                $cancellable = $diffInDays >= 14;
+            }
+            else if($beginning->dayOfWeek == 1) {
+                // Semaine hors saison
+                $cancellable = $diffInDays >= 7;
+            }
+            else {
+                // Week-end hors saison
+                $cancellable = $diffInDays >= 1;
+            }
         }
 
         return $cancellable;

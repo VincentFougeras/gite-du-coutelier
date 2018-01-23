@@ -549,7 +549,6 @@ class ReservationController extends Controller
     }
 
 
-
     /**
      * display the final page after finishing the reservation
      *
@@ -596,5 +595,100 @@ class ReservationController extends Controller
         });
 
     }
+
+
+    /**
+     * Display the fake reservation choice screen
+     * @return \View
+     */
+    public function makeFake(){
+        Carbon::setLocale('fr');
+
+        return view('admin.make-fake', compact("reservedDays"));
+    }
+
+    /**
+     * Validate the fake reservation
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function acceptFake(Request $request){
+
+        $user = Auth::user();
+
+        /*
+        * Validation of the $request
+        */
+        $validator = \Validator::make($request->all(), [
+            'place' => /*'required|in:0,1', */ 'required|in:1',
+            'name' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        if($user->name != $request->name){
+            return redirect()->back()->withErrors(["Une erreur a eu lieu. Veuillez contacter les administrateur du site."]);
+        }
+
+
+        /*
+         *  Vérifier les dates et créer la reservation
+         */
+
+        $reservation = new Reservation();
+
+        try {
+            $beginning = Carbon::createFromFormat('d/m/Y', $request->beginning);
+            $end = Carbon::createFromFormat('d/m/Y', $request->end);
+
+            // Vérifier que la date soit valide
+            $is_chalet = $request->place == 1;
+            $price = $this->getPrice($beginning, $end, $is_chalet);
+
+            if($price > 0){
+                // Vérifier que la date ne soit pas déjà réservée
+                if($this->verifierReservation($beginning, $end, $is_chalet)){
+                    // Créer la réservation
+                    $reservation->beginning = $beginning;
+                    $reservation->end = $end;
+                    $reservation->is_chalet = $is_chalet;
+                    $reservation->number_of_people = 0;
+                    $reservation->amount = $price;
+                }
+                else {
+                    return redirect()->back()->withErrors(['error' => "La date sélectionnée est déjà réservée"])->withInput();
+                }
+
+            }
+            else {
+                return redirect()->back()->withErrors(['error' => "La date sélectionnée est invalide"])->withInput();
+            }
+
+        }
+        catch (\Exception $ex) {
+            return redirect()->back()->withErrors(['message' => $ex->getMessage()])->withInput();
+        }
+
+
+        /*
+         * Additional verifications
+         */
+        // Si l'utilisateur fait des retours en arrière
+        if(! empty($reservation->stripe_transaction_id)) {
+            return redirect()->back()->withErrors(["error" => "Le paiement a déjà été effectué."]);
+        }
+
+        /* Finalize reservation */
+        $user->save();
+        $reservation->user()->associate($user);
+        $reservation->save();
+
+        return redirect(url('/reservation/done/' . $reservation->id));
+
+    }
+
+
 
 }

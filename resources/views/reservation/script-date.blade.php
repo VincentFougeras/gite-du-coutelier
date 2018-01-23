@@ -110,9 +110,9 @@
         if(moment($("#begin_group > input").val(), "DD/MM/YYYY").isValid()
             && moment($("#end_group > input").val(), "DD/MM/YYYY").isValid()){
 
-            var pathname = window.location.pathname;
+            /*var pathname = window.location.pathname;*/
             $.ajax({
-                url: pathname + '/updatePrice',
+                url: '{{ url('/reservation/choice/updatePrice') }}',
                 type: "POST",
                 data: {'place' : $('#place').find('option:selected').prop('value'),
                     'begin_date' : $('#begin_date').val(),
@@ -164,9 +164,9 @@
 
     function updateDates(){
         // Modifier les dates de réservation
-        var pathname = window.location.pathname;
+        /*var pathname = window.location.pathname;*/
         $.ajax({
-            url: pathname + '/updateDates',
+            url: '{{ url('/reservation/choice/updateDates') }}',
             type: "POST",
             data: {'place' : $('#place').find('option:selected').prop('value'),
                 '_token': $('input[name=_token]').val(),
