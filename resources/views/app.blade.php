@@ -84,7 +84,8 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                <span class="visible-sm"><span class='glyphicon glyphicon-user' aria-hidden='true'></span> <span class="caret"></span></span>
+                                <span class="hidden-sm">{{ Auth::user()->name }}<span class="caret"></span></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li>

@@ -3,7 +3,6 @@
     var oldDays;
 
     $(function () {
-        //console.log( {! $reservedDays !!} );
         // Link calendars together
         $('#begin_group').datetimepicker({
             calendarWeeks : true,
@@ -27,25 +26,7 @@
         $("#begin_group").on("dp.change", function (e) {
             $('#end_group').data("DateTimePicker").minDate(e.date);
             $('#end_group > input').val("");
-            /*var selectedDate = moment($("#begin_group > input").val(), "DD/MM/YYYY");
-            if(selectedDate.day() === 5){
-                var nextSunday = moment($("#begin_group > input").val(), "DD/MM/YYYY").add(2, 'days');
-                $('#end_group').data("DateTimePicker").daysOfWeekDisabled(oldDays);
-                $('#end_group').data("DateTimePicker").enabledDates([ nextSunday ]);
-            }
-            else if(selectedDate.day() === 1) {
-                $('#end_group').data("DateTimePicker").enabledDates(false);
-                $('#end_group').data("DateTimePicker").daysOfWeekDisabled([1,2,3,4,5,6]);
-            }
-            else {
-                $('#end_group').data("DateTimePicker").daysOfWeekDisabled(oldDays);
-            }*/
-
-
         });
-        /*$("#end_group").on("dp.change", function (e) {
-            $('#begin_group').data("DateTimePicker").maxDate(e.date);
-        });*/
 
         /* Changements du lieu ou d'une date */
         $('#place').change(function(){
@@ -95,7 +76,6 @@
             }
         }
 
-
         if(endDate !== null){
             if(endDate.day() !== 0){
                 $("#end_group").data("DateTimePicker").date(endDate.add(7, 'days').day(0));
@@ -110,7 +90,6 @@
         if(moment($("#begin_group > input").val(), "DD/MM/YYYY").isValid()
             && moment($("#end_group > input").val(), "DD/MM/YYYY").isValid()){
 
-            /*var pathname = window.location.pathname;*/
             $.ajax({
                 url: '{{ url('/reservation/choice/updatePrice') }}',
                 type: "POST",
@@ -145,26 +124,15 @@
             if($('#nb_people').val() > 4){
                 $('#nb_people').val(4);
             }
-
-            //$('#begin_group').data("DateTimePicker").daysOfWeekDisabled([0,2,3,4,6]);
-            //$('#end_group').data("DateTimePicker").daysOfWeekDisabled([1,2,3,4,5,6]);
-            //$('#end_group').data("DateTimePicker").enabledDates(false);
-            //oldDays = [1,2,3,4,5];
         }
         else { // Extension
             $('.nb_people_extension').show();
-
-            //$('#begin_group').data("DateTimePicker").daysOfWeekDisabled([0,2,3,4,5,6]);
-            //$('#end_group').data("DateTimePicker").daysOfWeekDisabled([1,2,3,4,5,6]);
-            //$('#end_group').data("DateTimePicker").enabledDates(false);
-            //oldDays = [1,2,3,4,5,6];
         }
     }
 
 
     function updateDates(){
         // Modifier les dates de réservation
-        /*var pathname = window.location.pathname;*/
         $.ajax({
             url: '{{ url('/reservation/choice/updateDates') }}',
             type: "POST",

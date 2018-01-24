@@ -82,17 +82,6 @@ class ReservationController extends Controller
     }
 
     /**
-     * Valide les dates de réservation, et crée la nouvelle réservation
-     *
-     * @param Request $request
-     * @return $this|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function choiceValidate(Request $request){
-
-    }
-
-
-    /**
      * Returns true if the date isn't already reserved
      *
      * @param $beginning a valid date
@@ -249,7 +238,7 @@ class ReservationController extends Controller
     /**
      * validate the reservation, then make the customer pay, then create a user and reservation, then send an email
      * @param Request $request
-     * @return \Redirector
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function acceptReservation(Request $request){
 
@@ -302,42 +291,13 @@ class ReservationController extends Controller
         /*
          *  Vérifier les dates et créer la reservation
          */
+        $is_chalet = $request->place == 1;
+        $returnedObject = $this->verifyDatesAndCreateReservation($request->beginning, $request->end, $is_chalet, $request->nb_people);
 
-        $reservation = new Reservation();
-
-        try {
-            $beginning = Carbon::createFromFormat('d/m/Y', $request->beginning);
-            $end = Carbon::createFromFormat('d/m/Y', $request->end);
-
-            // Vérifier que la date soit valide
-            $is_chalet = $request->place == 1;
-            $price = $this->getPrice($beginning, $end, $is_chalet);
-
-            if($price > 0){
-                // Vérifier que la date ne soit pas déjà réservée
-                if($this->verifierReservation($beginning, $end, $is_chalet)){
-                    // Créer la réservation
-                    $reservation->beginning = $beginning;
-                    $reservation->end = $end;
-                    $reservation->is_chalet = $is_chalet;
-                    $reservation->number_of_people = $request->nb_people;
-                    $reservation->amount = $price;
-                }
-                else {
-                    return redirect()->back()->withErrors(['error' => "La date sélectionnée est déjà réservée [020]"])->withInput();
-                }
-
-            }
-            else {
-                return redirect()->back()->withErrors(['error' => "La date sélectionnée est invalide [025]"])->withInput();
-            }
-
+        if(get_class($returnedObject) !== "Reservation"){
+            return $returnedObject;
         }
-        catch (\Exception $ex) {
-            return redirect()->back()->withErrors(['message' => $ex->getMessage()])->withInput();
-        }
-
-
+        $reservation = $returnedObject;
 
 
         /*
@@ -438,40 +398,13 @@ class ReservationController extends Controller
         /*
          *  Vérifier les dates et créer la reservation
          */
+        $is_chalet = $request->place == 1;
+        $returnedObject = $this->verifyDatesAndCreateReservation($request->beginning, $request->end, $is_chalet, $request->nb_people);
 
-        $reservation = new Reservation();
-
-        try {
-            $beginning = Carbon::createFromFormat('d/m/Y', $request->beginning);
-            $end = Carbon::createFromFormat('d/m/Y', $request->end);
-
-            // Vérifier que la date soit valide
-            $is_chalet = $request->place == 1;
-            $price = $this->getPrice($beginning, $end, $is_chalet);
-
-            if($price > 0){
-                // Vérifier que la date ne soit pas déjà réservée
-                if($this->verifierReservation($beginning, $end, $is_chalet)){
-                    // Créer la réservation
-                    $reservation->beginning = $beginning;
-                    $reservation->end = $end;
-                    $reservation->is_chalet = $is_chalet;
-                    $reservation->number_of_people = $request->nb_people;
-                    $reservation->amount = $price;
-                }
-                else {
-                    return redirect()->back()->withErrors(['error' => "La date sélectionnée est déjà réservée [050]"])->withInput();
-                }
-
-            }
-            else {
-                return redirect()->back()->withErrors(['error' => "La date sélectionnée est invalide [055]"])->withInput();
-            }
-
+        if(get_class($returnedObject) !== "Reservation"){
+            return $returnedObject;
         }
-        catch (\Exception $ex) {
-            return redirect()->back()->withErrors(['message' => $ex->getMessage()])->withInput();
-        }
+        $reservation = $returnedObject;
 
 
         /*
@@ -616,15 +549,40 @@ class ReservationController extends Controller
         /*
          *  Vérifier les dates et créer la reservation
          */
+        $is_chalet = $request->place == 1;
+        $returnedObject = $this->verifyDatesAndCreateReservation($request->beginning, $request->end, $is_chalet, 0);
 
+        if(get_class($returnedObject) !== "Reservation"){
+            return $returnedObject;
+        }
+        $reservation = $returnedObject;
+
+        /* Finalize reservation */
+        $user->save();
+        $reservation->user()->associate($user);
+        $reservation->save();
+
+        return redirect(url('/reservation/done/' . $reservation->id));
+
+    }
+
+
+    /**
+     * Validate the dates, and returns either a Reservation or a RedirectResponse
+     * @param $begString
+     * @param $endString
+     * @param $is_chalet
+     * @param $nb_people
+     * @return Reservation|\Illuminate\Http\RedirectResponse
+     */
+    private function verifyDatesAndCreateReservation($begString, $endString, $is_chalet, $nb_people){
         $reservation = new Reservation();
 
         try {
-            $beginning = Carbon::createFromFormat('d/m/Y', $request->beginning);
-            $end = Carbon::createFromFormat('d/m/Y', $request->end);
+            $beginning = Carbon::createFromFormat('d/m/Y', $begString);
+            $end = Carbon::createFromFormat('d/m/Y', $endString);
 
             // Vérifier que la date soit valide
-            $is_chalet = $request->place == 1;
             $price = $this->getPrice($beginning, $end, $is_chalet);
 
             if($price > 0){
@@ -634,8 +592,8 @@ class ReservationController extends Controller
                     $reservation->beginning = $beginning;
                     $reservation->end = $end;
                     $reservation->is_chalet = $is_chalet;
-                    $reservation->number_of_people = 0;
                     $reservation->amount = $price;
+                    $reservation->number_of_people = $nb_people;
                 }
                 else {
                     return redirect()->back()->withErrors(['error' => "La date sélectionnée est déjà réservée [080]"])->withInput();
@@ -651,15 +609,7 @@ class ReservationController extends Controller
             return redirect()->back()->withErrors(['message' => $ex->getMessage()])->withInput();
         }
 
-        /* Finalize reservation */
-        $user->save();
-        $reservation->user()->associate($user);
-        $reservation->save();
-
-        return redirect(url('/reservation/done/' . $reservation->id));
-
+        return $reservation;
     }
-
-
 
 }

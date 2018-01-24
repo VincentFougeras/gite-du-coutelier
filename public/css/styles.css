@@ -89,6 +89,9 @@ footer .container .credit p:first-child {
 .reservation_annulee {
     background-color: #eea9a7 !important;
 }
+.reservation_fake td:nth-child(5) {
+    background-color : #ffc18c;
+}
 
 /*
     Homepage
