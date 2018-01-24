@@ -48,33 +48,8 @@ class ReservationController extends Controller
         if (\Request::ajax()) {
             Carbon::setToStringFormat('d/m/Y');
 
-            $data = \Request::all();
-
-            $reservedDaysArray = $this->reservedDays($data['place'] == 1);
-
-            //$reservedDaysArray = array_merge($reservedDaysArray, $this->summerDays());
-            $reservedDays = '';
-            foreach($reservedDaysArray as $day){
-                $reservedDays .= '"' . $day . '", ';
-            }
-
-            return response()->json(array('msg' => $reservedDaysArray), 200);
-        }
-    }
-
-    /**
-     * Send back the reserved dates as a string array
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getDates(){
-        // Getting all post data
-        if (\Request::ajax()) {
-            Carbon::setToStringFormat('d/m/Y');
-
             $place = \Request::input('place');
-
-            $reservedDaysArray = $this->reservedDays($place);
+            $reservedDaysArray = $this->reservedDays($place == 1);
 
             $reservedDays = '';
             foreach($reservedDaysArray as $day){
@@ -84,7 +59,6 @@ class ReservationController extends Controller
             return response()->json(array('msg' => $reservedDaysArray), 200);
         }
     }
-
 
     /**
      * Send back the price based on the dates given and the place. Sends 0 if the dates are impossible
@@ -288,7 +262,9 @@ class ReservationController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'address' => 'required|string'
+            'address' => 'required|string',
+            'beginning' => 'required',
+            'end' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -315,11 +291,11 @@ class ReservationController extends Controller
                 }
             }
             else {
-                return redirect()->back()->withErrors(["L'image renseignée n'est pas valide"])->withInput();
+                return redirect()->back()->withErrors(["L'image renseignée n'est pas valide [010]"])->withInput();
             }
         }
         else {
-            return redirect()->back()->withErrors(["Le scan d'une pièce d'identité est requis"])->withInput();
+            return redirect()->back()->withErrors(["Le scan d'une pièce d'identité est requis [015]"])->withInput();
         }
 
 
@@ -348,12 +324,12 @@ class ReservationController extends Controller
                     $reservation->amount = $price;
                 }
                 else {
-                    return redirect()->back()->withErrors(['error' => "La date sélectionnée est déjà réservée"])->withInput();
+                    return redirect()->back()->withErrors(['error' => "La date sélectionnée est déjà réservée [020]"])->withInput();
                 }
 
             }
             else {
-                return redirect()->back()->withErrors(['error' => "La date sélectionnée est invalide"])->withInput();
+                return redirect()->back()->withErrors(['error' => "La date sélectionnée est invalide [025]"])->withInput();
             }
 
         }
@@ -380,7 +356,7 @@ class ReservationController extends Controller
          */
         // Si l'utilisateur fait des retours en arrière
         if(! empty($reservation->stripe_transaction_id)){
-            return redirect()->back()->withErrors(["Le paiement a déjà été effectué."]);
+            return redirect()->back()->withErrors(["Le paiement a déjà été effectué. [030]"]);
         }
 
 
@@ -423,11 +399,11 @@ class ReservationController extends Controller
             }
             else {
                 // Normalement impossible
-                return redirect()->back()->withErrors(["Le paiement et la réservation ont bien été effectués, mais une erreur a eu lieu lors de la connexion. Veuillez contacter les administrateurs du site."]);
+                return redirect()->back()->withErrors(["Le paiement et la réservation ont bien été effectués, mais une erreur a eu lieu lors de la connexion. Veuillez contacter les administrateurs du site. [035]"]);
             }
         }
         catch (\Exception $ex) {
-            return redirect(url('/reservation/done/' . $reservation->id))->withErrors(['error' => "Le mail n'a pas pu être envoyé.", 'message' => $ex->getMessage()]);
+            return redirect(url('/reservation/done/' . $reservation->id))->withErrors(['error' => "Le mail n'a pas pu être envoyé. [040]", 'message' => $ex->getMessage()]);
         }
 
     }
@@ -446,6 +422,8 @@ class ReservationController extends Controller
             'place' => /*'required|in:0,1', */ 'required|in:1',
             'nb_people' => ['required', 'integer' , ($request->place == 1 ? 'between:1,4' : 'between:1,6')],
             'name' => 'required|string|max:255',
+            'beginning' => 'required',
+            'end' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -453,7 +431,7 @@ class ReservationController extends Controller
         }
 
         if($user->name != $request->name){
-            return redirect()->back()->withErrors(["Une erreur a eu lieu. Veuillez contacter les administrateur du site."]);
+            return redirect()->back()->withErrors(["Une erreur a eu lieu. Veuillez contacter les administrateur du site. [045]"]);
         }
 
 
@@ -482,12 +460,12 @@ class ReservationController extends Controller
                     $reservation->amount = $price;
                 }
                 else {
-                    return redirect()->back()->withErrors(['error' => "La date sélectionnée est déjà réservée"])->withInput();
+                    return redirect()->back()->withErrors(['error' => "La date sélectionnée est déjà réservée [050]"])->withInput();
                 }
 
             }
             else {
-                return redirect()->back()->withErrors(['error' => "La date sélectionnée est invalide"])->withInput();
+                return redirect()->back()->withErrors(['error' => "La date sélectionnée est invalide [055]"])->withInput();
             }
 
         }
@@ -501,7 +479,7 @@ class ReservationController extends Controller
          */
         // Si l'utilisateur fait des retours en arrière
         if(! empty($reservation->stripe_transaction_id)){
-            return redirect()->back()->withErrors(["error" => "Le paiement a déjà été effectué."]);
+            return redirect()->back()->withErrors(["error" => "Le paiement a déjà été effectué. [060]"]);
         }
 
 
@@ -541,7 +519,7 @@ class ReservationController extends Controller
             $this->sendMail($user, $reservation);
         }
         catch (\Exception $ex) {
-            return redirect(url('/reservation/done/' . $reservation->id))->withErrors(['error' => "Le mail de confirmation n'a pas pu être envoyé.", 'message' => $ex->getMessage()]);
+            return redirect(url('/reservation/done/' . $reservation->id))->withErrors(['error' => "Le mail de confirmation n'a pas pu être envoyé. [065]", 'message' => $ex->getMessage()]);
         }
 
         return redirect(url('/reservation/done/' . $reservation->id));
@@ -622,6 +600,8 @@ class ReservationController extends Controller
         $validator = \Validator::make($request->all(), [
             'place' => /*'required|in:0,1', */ 'required|in:1',
             'name' => 'required|string|max:255',
+            'beginning' => 'required',
+            'end' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -629,7 +609,7 @@ class ReservationController extends Controller
         }
 
         if($user->name != $request->name){
-            return redirect()->back()->withErrors(["Une erreur a eu lieu. Veuillez contacter les administrateur du site."]);
+            return redirect()->back()->withErrors(["Une erreur a eu lieu. Veuillez contacter les administrateur du site. [070]"]);
         }
 
 
@@ -658,26 +638,17 @@ class ReservationController extends Controller
                     $reservation->amount = $price;
                 }
                 else {
-                    return redirect()->back()->withErrors(['error' => "La date sélectionnée est déjà réservée"])->withInput();
+                    return redirect()->back()->withErrors(['error' => "La date sélectionnée est déjà réservée [080]"])->withInput();
                 }
 
             }
             else {
-                return redirect()->back()->withErrors(['error' => "La date sélectionnée est invalide"])->withInput();
+                return redirect()->back()->withErrors(['error' => "La date sélectionnée est invalide [085]"])->withInput();
             }
 
         }
         catch (\Exception $ex) {
             return redirect()->back()->withErrors(['message' => $ex->getMessage()])->withInput();
-        }
-
-
-        /*
-         * Additional verifications
-         */
-        // Si l'utilisateur fait des retours en arrière
-        if(! empty($reservation->stripe_transaction_id)) {
-            return redirect()->back()->withErrors(["error" => "Le paiement a déjà été effectué."]);
         }
 
         /* Finalize reservation */

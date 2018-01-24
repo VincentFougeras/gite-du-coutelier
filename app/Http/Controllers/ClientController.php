@@ -54,7 +54,7 @@ class ClientController extends Controller
                         'charge' => $reservation->stripe_transaction_id,
                     ));
                 } catch (\Exception $ex) {
-                    return redirect()->back()->withErrors(['error' => 'Le remboursement n\'a pas pu être effectué. Veuillez contacter les administrateurs du site.'])->withInput();
+                    return redirect()->back()->withErrors(['error' => 'Le remboursement n\'a pas pu être effectué. Veuillez contacter les administrateurs du site. [090]'])->withInput();
                 }
 
                 // Suppression de la réservation
@@ -66,7 +66,7 @@ class ClientController extends Controller
 
             }
             else {
-                return redirect()->back()->withErrors(['error' => "La réservation ne peut plus être annulée."])->withInput();
+                return redirect()->back()->withErrors(['error' => "La réservation ne peut plus être annulée. [095]"])->withInput();
             }
         }
         else {

@@ -94,7 +94,7 @@ class HomeController extends Controller
         if(empty($name) || empty($email) || empty($mes) || empty($subject)){
             return redirect()->back()
                 ->withInput()
-                ->withErrors(['message' => 'Tous les champs requis doivent être remplis.']);
+                ->withErrors(['message' => 'Tous les champs requis doivent être remplis. [100]']);
         }
         else {
             try {
@@ -113,7 +113,7 @@ class HomeController extends Controller
             catch (\Exception $ex) {
                 return redirect()->back()
                     ->withInput()
-                    ->withErrors(['message' => 'Le message n\'a pas pu être envoyé.']);
+                    ->withErrors(['message' => 'Le message n\'a pas pu être envoyé. [105]']);
             }
 
 

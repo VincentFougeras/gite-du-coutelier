@@ -60,7 +60,7 @@ class SectionController extends Controller
                     }
                 }
                 else {
-                    return redirect()->back()->withErrors(["L'image renseignée n'est pas valide"])->withInput();
+                    return redirect()->back()->withErrors(["L'image renseignée n'est pas valide [110]"])->withInput();
                 }
             }
 
@@ -111,7 +111,7 @@ class SectionController extends Controller
                     }
                 }
                 else {
-                    return redirect()->back()->withErrors(["L'image renseignée n'est pas valide"])->withInput();
+                    return redirect()->back()->withErrors(["L'image renseignée n'est pas valide [115]"])->withInput();
                 }
             }
 

@@ -18,7 +18,7 @@
  */
 
 Route::get('/', "HomeController@home");
-Route::get('/getDates', 'ReservationController@getDates'); // Ajax
+Route::get('/getDates', 'ReservationController@updateDates'); // Ajax
 
 // Livre d'or
 Route::get('/visitors-book', 'HomeController@visitorsBook');
