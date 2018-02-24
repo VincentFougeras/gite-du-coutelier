@@ -294,7 +294,7 @@ class ReservationController extends Controller
         $is_chalet = $request->place == 1;
         $returnedObject = $this->verifyDatesAndCreateReservation($request->beginning, $request->end, $is_chalet, $request->nb_people);
 
-        if(get_class($returnedObject) !== "Reservation"){
+        if(get_class($returnedObject) !== "App\Reservation"){
             return $returnedObject;
         }
         $reservation = $returnedObject;
@@ -401,7 +401,7 @@ class ReservationController extends Controller
         $is_chalet = $request->place == 1;
         $returnedObject = $this->verifyDatesAndCreateReservation($request->beginning, $request->end, $is_chalet, $request->nb_people);
 
-        if(get_class($returnedObject) !== "Reservation"){
+        if(get_class($returnedObject) !== "App\Reservation"){
             return $returnedObject;
         }
         $reservation = $returnedObject;
@@ -552,7 +552,7 @@ class ReservationController extends Controller
         $is_chalet = $request->place == 1;
         $returnedObject = $this->verifyDatesAndCreateReservation($request->beginning, $request->end, $is_chalet, 0);
 
-        if(get_class($returnedObject) !== "Reservation"){
+        if(get_class($returnedObject) !== "App\Reservation"){
             return $returnedObject;
         }
         $reservation = $returnedObject;
