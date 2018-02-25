@@ -53,7 +53,8 @@ class SectionController extends Controller
                         return redirect()->back()->withErrors($validator());
                     } else {
                         //Store the picture
-                        $fileName = rand(11111,99999) . '.' . $picture->getClientOriginalExtension();
+                        $strippedName = preg_replace('([^\w\d])', '', $request->title);
+                        $fileName = $strippedName . rand(1111,9999) . '.' . $picture->getClientOriginalExtension();
                         $picture->move('images/activites/', $fileName);
 
                         $section->image = $fileName;
