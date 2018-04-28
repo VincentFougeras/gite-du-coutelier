@@ -11,7 +11,7 @@
             <td><a href="{{ url('admin/reservation/'.$reservation->id) }}"></a>{{ $reservation->beginning }}</td>
             <td>{{ $reservation->end }}</td>
             <td>{{ $reservation->amount / 100 }}€</td>
-            <td>{{ $reservation->is_chalet ? "Le chalet" : "L'extension" }}</td>
+            <td>{{ $reservation->is_chalet ? "Chalet 1" : "Chalet 2" }}</td>
             <td>{{ $reservation->number_of_people }}</td>
             <td>{{ $reservation->user->name }}</td>
         </tr>

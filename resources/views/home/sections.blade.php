@@ -2,6 +2,8 @@
 
 @section('content')
 
+    <h1>Les activités</h1>
+
     @include('flash')
 
     @if(Auth::check() && Auth::user()->is_admin)

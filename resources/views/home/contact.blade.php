@@ -6,19 +6,19 @@
 
             <h1>Contact</h1>
 
-            <p>Vous pouvez aussi me contacter par téléphone au <strong>{{ env("PHONE_FRANCOIS") }}</strong>.</p>
+            <p>Vous pouvez aussi nous contacter par téléphone au <strong>{{ env("PHONE_LAETITIA") }}</strong> ou au <strong>{{ env("PHONE_FRANCOIS") }}</strong>.</p>
 
             @include("flash")
 
             {!! Form::open(array('url' => 'contact', 'method' => 'post')) !!}
 
             <div class="form-group">
-                {!! Form::label('name', 'Nom') !!}
+                {!! Form::label('name', 'Votre nom') !!}
                 {!! Form::text('name', $name, ['required' => 'required', 'class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">
-                {!! Form::label('email', 'Email') !!}
+                {!! Form::label('email', 'Votre email') !!}
                 {!! Form::email('email', $email, ['required' => 'required', 'class' => 'form-control']) !!}
             </div>
 

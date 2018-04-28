@@ -1,6 +1,6 @@
 <h2><img width="32" src="{!! asset('images/large-icon.png') !!}" alt="Icône"/> La réservation a été effectuée !</h2>
 
-<p>{{ $reservation->user->name }}, vous avez effectué une réservation dans {{($reservation->is_chalet ? 'le chalet' : 'l\'extension')}}.</p>
+<p>{{ $reservation->user->name }}, vous avez effectué une réservation au {{($reservation->is_chalet ? "Chalet 1" : "Chalet 2")}}.</p>
 
 <table>
     <tr>
@@ -17,7 +17,7 @@
     </tr>
     <tr>
         <th>Lieu</th>
-        <td>{{ $reservation->is_chalet ? "Le chalet" : "L'extension" }}</td>
+        <td>{{ $reservation->is_chalet ? "Chalet 1" : "Chalet 2" }}</td>
     </tr>
     <tr>
         <th>Nb. de résidents</th>

@@ -4,8 +4,8 @@
         <div class="form-group">
             {!! Form::label('place', 'Lieu de réservation :') !!}
             <select class="form-control" id="place" name="place">
-                <option value="1">Chalet</option>
-                <option value="0" disabled>Extension (pas encore disponible)</option>
+                <option value="1">Chalet 1</option>
+                <option value="0" disabled>Chalet 2 (pas encore disponible)</option>
             </select>
         </div>
     </div>
@@ -41,7 +41,7 @@
         <div class="alert alert-info"><strong>Comment choisir ses dates</strong>
             <ul>
                 <li>Par défaut : <strong>du lundi au dimanche (6 nuits)</strong> renouvelable sur plusieurs semaines</li>
-                <li>En hiver (semaines 39 à 18), dans le chalet uniquement : <strong>du vendredi au dimanche (2 nuits)</strong></li>
+                <li>En hiver (semaines 39 à 18), au Chalet 1 uniquement : <strong>du vendredi au dimanche (2 nuits)</strong></li>
             </ul>
         </div>
     </div>

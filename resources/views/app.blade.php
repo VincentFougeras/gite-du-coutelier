@@ -71,7 +71,7 @@
                 <li class="{{ Request::path() == 'visitors-book' ? 'active' : '' }}"><a href="{{ URL::to('/visitors-book') }}">Livre d'or</a></li>
                 <li class="{{ Request::path() == 'activites' ? 'active' : '' }}"><a href="{{ URL::to('/activites') }}">Les activités</a></li>
                 <li id="contact-li" class="{{ Request::path() == 'contact' ? 'active' : '' }}" data-toggle="popover" data-container="body"
-                    data-content="<span class='glyphicon glyphicon-earphone' aria-hidden='true'></span> {{ env('PHONE_FRANCOIS') }}">
+                    data-content="<span class='glyphicon glyphicon-earphone' aria-hidden='true'></span> {{ env('PHONE_LAETITIA') }}">
                     <a href="{{ URL::to('/contact') }}">Contact</a>
                 </li>
 
@@ -129,8 +129,10 @@
 
 <footer class="footer">
     <div class="container">
-        <div class="text-muted credit">
-            <p>Copyright © 2017-{{ Carbon\Carbon::now()->year }} François Virga</p>
+        <div class="credit">
+            <p><a href="{{ URL::to('/') }}">Accueil</a> - <a href="{{ URL::to('/reservation/choice') }}">Réservation</a> -
+                <a href="{{ URL::to('/visitors-book') }}">Livre d'or</a> - <a href="{{ URL::to('/activites') }}">Les activités</a> -
+                <a href="{{ URL::to('/contact') }}">Contact</a></p>
             <p>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
             </p>
         </div>

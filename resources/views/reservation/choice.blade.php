@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('content')
+    <h1>Réservation en une page</h1>
     <?php
         if(Auth::check()){
             $postUrl = url("/reservation/logged-charge");

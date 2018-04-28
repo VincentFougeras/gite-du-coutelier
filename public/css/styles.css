@@ -6,6 +6,7 @@
 
 h1, h2 {
     font-family: 'Gabriela', serif;
+    color: #6c4915;
 }
 
 
@@ -59,15 +60,24 @@ h1, h2 {
     Footer
  */
 footer {
-    background-color: #f9f9f9;
+    background-color: rgb(191, 166, 111);
+    color: #ecf0f1;
 }
 footer .container .credit {
     margin: 20px 0;
     text-align: center;
 }
-
-footer .container .credit p:first-child {
+footer a {
+    color: #ecf0f1;
+}
+footer a:hover {
+    color : #fff;
+}
+footer .credit p:first-child {
     font-size: 1.1em;
+}
+footer .credit p:nth-child(2) a {
+    text-decoration: underline;
 }
 
 /*
@@ -161,7 +171,28 @@ footer .container .credit p:first-child {
         width : 360px;
     }
 }
-
+.glyphicon {
+    padding-right : 10px;
+}
+.text-info {
+    margin-left : 10px;
+    padding-left : 12px;
+    border-left : 3px solid #31708f;
+}
+.bg-primary {
+    padding : 10px;
+    text-align: center;
+}
+.bg-primary .text {
+    font-stretch: expanded;
+    font-size : 1.2em;
+}
+.img-thumbnail {
+    margin-bottom : 5px;
+}
+.reseaux-sociaux {
+    margin-bottom: 20px;
+}
 
 
 /*

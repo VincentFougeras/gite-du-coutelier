@@ -19,14 +19,12 @@ use Stripe\Charge;
 class ReservationController extends Controller
 {
     const YEARS_IN_ADVANCE = 2;
-    const PRICE_CHALET_WEEK_PLEINE_SAISON = 35000;
-    const PRICE_CHALET_WEEK_HORS_SAISON = 25000;
-    const PRICE_CHALET_WEEK_END_HORS_SAISON = 12000;
+    const PRICE_CHALET_WEEK_PLEINE_SAISON = 40000;
+    const PRICE_CHALET_WEEK_HORS_SAISON = 30000;
+    const PRICE_CHALET_WEEK_END_HORS_SAISON = 20000;
 
     const PRICE_EXTENSION_WEEK_PLEINE_SAISON = 55000;
     const PRICE_EXTENSION_WEEK_HORS_SAISON = 40000;
-
-    const FRANCOIS_MAIL = "francois.virga@gmail.com";
 
     /**
      * Display the reservation choice screen
@@ -487,9 +485,6 @@ class ReservationController extends Controller
      * @param Reservation $reservation
      */
     private function sendMail(User $user, Reservation $reservation){
-        $fromName = "Gite du Coutelier";
-        $fromEmail = "reservation@gite-du-coutelier.fr"; //TODO change email
-
         $subject = "Votre réservation a été effectuée";
         $to = $user->email;
         $bcc = env('EMAIL_FRANCOIS');
@@ -498,10 +493,9 @@ class ReservationController extends Controller
 
         // Here a possibility of using queue with nohup
         Mail::send(['emails.reserved-html', 'emails.reserved-txt'], compact('user', 'reservation'), function($message)
-            use ($fromName, $fromEmail, $to, $bcc, $subject){
+            use ($to, $bcc, $subject){
 
-            $message->from($fromEmail, $fromName)
-                ->to($to)
+            $message->to($to)
                 ->bcc($bcc)
                 ->subject($subject);
         });

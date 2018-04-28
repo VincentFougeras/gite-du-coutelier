@@ -24,7 +24,7 @@
         </tr>
         <tr>
             <th>Lieu</th>
-            <td>{{ $reservation->is_chalet ? "Le chalet" : "L'extension" }}</td>
+            <td>{{ $reservation->is_chalet ? "Chalet 1" : "Chalet 2" }}</td>
         </tr>
         <tr>
             <th>Nb. de résidents</th>
