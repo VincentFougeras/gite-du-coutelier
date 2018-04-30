@@ -37,7 +37,7 @@
         // Modifier les dates de réservation
         var pathname = window.location.pathname;
         $.ajax({
-            url: pathname + '/getDates',
+            url: '{{ url('/getDates') }}',
             data: {'place' : $('#place').find('option:selected').prop('value')},
             type: "GET",
             success: function(data){

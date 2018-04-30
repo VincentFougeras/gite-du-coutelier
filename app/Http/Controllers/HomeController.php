@@ -101,8 +101,8 @@ class HomeController extends Controller
                 $dest = env('EMAIL_FRANCOIS');
 
                 // Here a possibility of using queue with nohup
-                Mail::send(['text' => 'emails.contact'], compact('mes'), function($message) use ($email, $name, $dest, $subject){
-                    $message->from($email, $name)
+                Mail::send(['text' => 'emails.contact'], compact('mes', 'email', 'name'), function($message) use ($dest, $subject){
+                    $message
                         ->to($dest)
                         ->subject('[Contact] ' . $subject);
                 });

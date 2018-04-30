@@ -11,38 +11,20 @@
                 <div id="carousel-gite" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
-                        <li data-target="#carousel-gite" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-gite" data-slide-to="1"></li>
-                        <li data-target="#carousel-gite" data-slide-to="2"></li>
-                        <li data-target="#carousel-gite" data-slide-to="3"></li>
+                        @for ($i = 0; $i < 6; $i++)
+                            <li data-target="#carousel-gite" data-slide-to="{{ $i }}" {!! $i == 0 ? 'class="active"' : '' !!}></li>
+                        @endfor
                     </ol>
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <img src="{!! asset('images/carousel/chalet11.jpg') !!}" alt="A l'extérieur du chalet">
-                            <div class="carousel-caption">
-                                A l'extérieur du chalet
+                        @for ($i = 1; $i <= 6; $i++)
+                            <div class="item {{ $i == 1 ? 'active' : '' }}">
+                                <img src="{!! asset('images/carousel/chalet1' . $i . '.jpg') !!}" alt="">
+                                <div class="carousel-caption">
+                                </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <img src="{!! asset('images/carousel/chalet12.jpg') !!}" alt="Le salon">
-                            <div class="carousel-caption">
-                                Le salon
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="{!! asset('images/carousel/chalet13.jpg') !!}" alt="Le salon 2">
-                            <div class="carousel-caption">
-
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="{!! asset('images/carousel/chalet14.jpg') !!}" alt="Le salon 3">
-                            <div class="carousel-caption">
-
-                            </div>
-                        </div>
+                        @endfor
                     </div>
 
                     <!-- Controls -->
@@ -112,26 +94,26 @@
 
             <div>
                 <h2>Infos pratiques</h2>
-                <p><span class="glyphicon glyphicon-euro"></span>350€ la semaine en pleine saison (été), 250€ la semaine hors saison (hiver)</p>
-                <p class="text-info">Hors saison, vous pouvez réserver pour un week-end (120€).</p>
+                <p><span class="glyphicon glyphicon-euro"></span>400€ la semaine en pleine saison (été), 300€ la semaine hors saison (hiver)</p>
+                <p class="text-info">Hors saison, vous pouvez réserver pour un week-end (200€).</p>
                 <p><span class="glyphicon glyphicon-user"></span>Capacité : 4 personnes</p>
-                <p><span class="glyphicon glyphicon-home"></span>Séjour avec coin cuisine équipée, lave-linge, TV, internet, WIFI</p>
+                <p><span class="glyphicon glyphicon-home"></span>Séjour avec coin cuisine équipée, lave-linge, TV, internet, WIFI, plancha</p>
                 <ul>
                     <li>1ère chambre à coucher 1 lit double</li>
                     <li>2nd chambre à coucher 1 lit double</li>
                     <li>WC indépendant</li>
                     <li>Salle de bain avec douche</li>
-                    <li>Surface : 35 m²</li>
+                    <li>Surface : 40 m²</li>
                 </ul>
-                <p>Pour plus d’informations : <strong>06 64 46 95 18</strong> ou <strong>06 17 68 68 32</strong>, ou bien <a href="{{ URL::to('/contacts') }}">contactez-nous par mail</a></p>
+                <p>Pour plus d’informations : <strong>06 64 46 95 18</strong> ou <strong>06 17 68 68 32</strong>, ou bien <a href="{{ URL::to('/contact') }}">contactez-nous par mail</a></p>
                 <p>Disponibilité : toute l’année, voir le tableau des réservations.</p>
             </div>
 
             <div>
-                @for ($i = 1; $i <= 8; $i++)
+                @for ($i = 1; $i <= 9; $i++)
                     <div class="img-thumbnail">
-                        <a href="{!! asset('images/home_pictures/home'.$i.'.jpg') !!}">
-                            <img width="150" src="{!! asset('images/home_pictures/min_home'.$i.'.jpg') !!}"/>
+                        <a href="#" class="pop">
+                            <img width="120" src="{!! asset('images/home_pictures/home'.$i.'.jpg') !!}"/>
                         </a>
                     </div>
                 @endfor
@@ -169,7 +151,7 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="youtube-tab">
                         <div class="embed-responsive embed-responsive-16by9">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/zJa4m3c8wYM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/zJa4m3c8wYM?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="twitter-tab">
@@ -188,4 +170,24 @@
         </div>
     </div><!-- /.row -->
     @include('home.script-date')
+
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="" class="imagepreview" style="width: 100%;" >
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $('.pop').on('click', function(e) {
+                e.preventDefault();
+                $('.imagepreview').attr('src', $(this).find('img').attr('src'));
+                $('#imagemodal').modal('show');
+            });
+        });
+    </script>
 @endsection

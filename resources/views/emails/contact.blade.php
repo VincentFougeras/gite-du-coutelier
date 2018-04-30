@@ -1,1 +1,2 @@
+De : {{ $name }} ({{ $email }})
 {{ $mes }}

@@ -13,3 +13,19 @@ body {
     /* Set the fixed height of the footer here */
     height: 95px;
 }
+@media (max-width: 485px){
+    body {
+        margin-bottom: 110px;
+    }
+    .footer {
+        height : 110px;
+    }
+}
+@media (max-width: 425px){
+    body {
+        margin-bottom: 132px;
+    }
+    .footer {
+        height: 132px;
+    }
+}
