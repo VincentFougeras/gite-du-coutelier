@@ -58,6 +58,11 @@
         text-align: center;
         position: relative;
     }
+    #content_preview {
+        background-color: #f5f5f5;
+        height : 100px;
+        overflow-y: scroll;
+    }
 </style>
 
 <script>
@@ -69,7 +74,7 @@
                 end = textArea[0].selectionEnd,
                 selectedText = textArea.val().substring(start, end);
             $('#btnedit-title').val(selectedText);
-            $('#btnedit-url').val('http://');
+            $('#btnedit-url').val('');
             $('#prompt').show();
         });
 
@@ -84,6 +89,11 @@
             e.preventDefault();
             $('#prompt').hide();
         });
+
+        $('#btninsert').on("click", function() {
+            wrapLink('<br/>');
+        });
+
     });
 
     function wrapLink(link) {

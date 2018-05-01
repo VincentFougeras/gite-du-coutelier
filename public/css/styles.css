@@ -229,6 +229,9 @@ footer .credit p:nth-child(2) a {
 /*
     Activities
  */
+.activite-section {
+    padding : 10px;
+}
 .activite-section h3 {
     font-family : 'Gabriela', serif;
 }

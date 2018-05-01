@@ -46,6 +46,13 @@ class ClientController extends Controller
 
         if($reservation->user_id === Auth::user()->id){
             if($this->is_cancellable($reservation)){
+                // Don't contact stripe if it's a fake reservation
+                if(Auth::user()->is_admin && (!isset($reservation->stripe_transaction_id))){
+                    $reservation->delete();
+                    Session::flash('success', 'La (fausse) réservation a été annulée.');
+                    return redirect(url('/my/reservations'));
+                }
+
                 // La réservation peut être annulée
                 try {
                     Stripe::setApiKey(env('STRIPE_SECRET_KEY'));

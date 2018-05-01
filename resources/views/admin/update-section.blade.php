@@ -17,6 +17,7 @@
     <div class="form-group">
         {!! Form::label('section_content', 'Contenu :') !!}
         <span id="btnedit-link" title="Insérer un lien"><i class="glyphicon glyphicon-link"></i></span>
+        <span id="btninsert" title="Insérer un saut de ligne"><i class="glyphicon glyphicon-download-alt"></i></span>
         {!! Form::textarea('section_content', $section->content, ['id' => 'section_content', 'class' => 'form-control', 'rows' => '4']) !!}
     </div>
 
