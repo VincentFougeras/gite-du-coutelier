@@ -26,6 +26,10 @@ class ReservationController extends Controller
     const PRICE_EXTENSION_WEEK_PLEINE_SAISON = 55000;
     const PRICE_EXTENSION_WEEK_HORS_SAISON = 40000;
 
+    const SUMMER_START_WEEK = 24;
+    const SUMMER_END_WEEK = 37;
+    const HOLIDAY_WEEKS = [42, 43, 44, 51, 52, 1, 6, 7, 8, 9, 10, 14, 15, 16, 17, 18];
+
     /**
      * Display the reservation choice screen
      * @return \View
@@ -111,7 +115,7 @@ class ReservationController extends Controller
         for($currWeek = Carbon::now()->startOfWeek()->next(Carbon::FRIDAY);
                 $currWeek->lte(Carbon::now()->addYears(self::YEARS_IN_ADVANCE));
                 $currWeek->next(Carbon::FRIDAY)){
-            if($currWeek->weekOfYear >= 18 && $currWeek->weekOfYear <= 39){
+            if($currWeek->weekOfYear >= self::SUMMER_START_WEEK && $currWeek->weekOfYear <= self::SUMMER_END_WEEK){
                 // Summer : forbid friday
                 $forbiddenDays[] = $currWeek->__toString();
             }
@@ -162,7 +166,7 @@ class ReservationController extends Controller
         if($beginning->lt($end)){
             if($beginning->weekOfYear == $end->weekOfYear){
                 // One week reservation
-                if($beginning->weekOfYear >= 18 && $beginning->weekOfYear <= 39){
+                if($beginning->weekOfYear >= self::SUMMER_START_WEEK && $beginning->weekOfYear <= self::SUMMER_END_WEEK){
                     // Pleine saison
                     if($beginning->dayOfWeek == 1 && $end->dayOfWeek == 0){ // Semaine pleine saison
                         if($is_chalet){
@@ -189,7 +193,8 @@ class ReservationController extends Controller
                         }
                     }
                     else {
-                        if($beginning->dayOfWeek == 5 && $end->dayOfWeek == 0 && $is_chalet){ // W-e accepté dans le chalet hors saison
+                        if($beginning->dayOfWeek == 5 && $end->dayOfWeek == 0 && $is_chalet &&
+                            (! in_array($beginning->weekOfYear, self::HOLIDAY_WEEKS, true))){ // W-e accepté dans le chalet hors saison
                             return self::PRICE_CHALET_WEEK_END_HORS_SAISON;
                         }
                         else {
@@ -203,7 +208,7 @@ class ReservationController extends Controller
                 if($beginning->dayOfWeek == 1 && $end->dayOfWeek == 0) {
                     $amount = 0;
                     for($currWeek = clone $beginning; $currWeek->year < $end->year || $currWeek->weekOfYear <= $end->weekOfYear ; $currWeek->addWeek()){
-                        if($currWeek->weekOfYear >= 18 && $currWeek->weekOfYear <= 39){ // Pleine saison
+                        if($currWeek->weekOfYear >= self::SUMMER_START_WEEK && $currWeek->weekOfYear <= self::SUMMER_END_WEEK){ // Pleine saison
                             if($is_chalet){
                                 $amount += self::PRICE_CHALET_WEEK_PLEINE_SAISON;
                             }

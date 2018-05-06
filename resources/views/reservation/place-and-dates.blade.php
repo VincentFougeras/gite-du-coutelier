@@ -40,8 +40,8 @@
     <div class="col-md-4">
         <div class="alert alert-info"><strong>Comment choisir ses dates</strong>
             <ul>
-                <li>Par défaut : <strong>du lundi au dimanche (6 nuits)</strong> renouvelable sur plusieurs semaines</li>
-                <li>En hiver (semaines 39 à 18), au Chalet 1 uniquement : <strong>du vendredi au dimanche (2 nuits)</strong></li>
+                <li>Toute l'année : <strong>du lundi au dimanche (6 nuits)</strong> renouvelable sur plusieurs semaines</li>
+                <li>Week-end possible en hiver (semaines 37 à 24), hors vacances scolaires, au Chalet 1 uniquement : <strong>du vendredi au dimanche (2 nuits)</strong></li>
             </ul>
         </div>
     </div>

@@ -1,6 +1,7 @@
 <script type="text/javascript"> /* TODO : empêcher de faire 3 semaines avec une semaine déjà réservée au milieu */
 
     var oldDays;
+    const HOLIDAY_WEEKS = [42, 43, 44, 51, 52, 1, 6, 7, 8, 9, 10, 14, 15, 16, 17, 18];
 
     $(function () {
         // Link calendars together
@@ -50,10 +51,9 @@
         var beginDate = $("#begin_group").data("DateTimePicker").date();
         var endDate = $("#end_group").data("DateTimePicker").date();
 
-
         // Week end autorisé dans le chalet hors saison
         if(beginDate !== null){
-            if((beginDate.week() < 18 || beginDate.week() > 39) && $("#place").val() == 1){
+            if((beginDate.week() < 24 || beginDate.week() > 37) && $("#place").val() == 1 && HOLIDAY_WEEKS.indexOf(beginDate.week()) === -1){
                 if(beginDate.day() >= 5 || beginDate.day() === 0){
                     if(beginDate.day() === 0){         // Dimanche == premier jour de la semaine suivante
                         $("#begin_group").data("DateTimePicker").date(beginDate.subtract(7, 'days'));
