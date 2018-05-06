@@ -6,6 +6,7 @@ use App\Reservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Stripe\Refund;
 use Stripe\Stripe;
@@ -67,8 +68,16 @@ class ClientController extends Controller
                 // Suppression de la réservation
                 $reservation->delete();
 
-                Session::flash('success', 'La réservation a été annulée.');
-                return redirect(url('/my/reservations'));
+                try {
+                    $this->sendDeletionMail($reservation);
+                    Session::flash('success', 'La réservation a été annulée.');
+                    return redirect(url('/my/reservations'));
+                }
+                catch (\Exception $ex) {
+                    return redirect(url('/my/reservations'))->withErrors(['error' => "La réservation a bien été annulée, mais le mail de confirmation n'a pas pu être envoyé. [093]", 'message' => $ex->getMessage()]);
+                }
+
+
 
 
             }
@@ -79,8 +88,31 @@ class ClientController extends Controller
         else {
             return response('Unauthorized.', 401);
         }
+    }
 
+    /**
+     * Send a mail to the customer
+     *
+     * @param User $user
+     * @param Reservation $reservation
+     */
+    private function sendDeletionMail(Reservation $reservation){
+        $subject = "Votre réservation a été annulée";
+        $user = Auth::user();
+        $to = $user->email;
 
+        $bcc = env('EMAIL_FRANCOIS');
+
+        Carbon::setToStringFormat('d/m/Y');
+
+        // Here a possibility of using queue with nohup
+        Mail::send(['emails.delete-html', 'emails.delete-txt'], compact('user', 'reservation'), function($message)
+        use ($to, $bcc, $subject){
+
+            $message->to($to)
+                ->bcc($bcc)
+                ->subject($subject);
+        });
 
     }
 
