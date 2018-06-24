@@ -238,3 +238,10 @@ footer .credit p:nth-child(2) a {
 .top-margin {
     margin-top: 20px;
 }
+
+/*
+    Contact
+ */
+.flags img {
+    width : 20px;
+}

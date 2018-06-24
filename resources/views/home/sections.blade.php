@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title', '- Activités')
+
 @section('content')
 
     <h1>Les activités</h1>

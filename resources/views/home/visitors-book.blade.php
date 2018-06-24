@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title', '- Livre d\'or')
+
 @section('content')
 
     <div class="row">

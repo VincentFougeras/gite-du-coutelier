@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title', '- Réservation')
+
 @section('content')
     <h1>Réservation en une page</h1>
     <?php
