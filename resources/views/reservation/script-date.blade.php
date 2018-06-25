@@ -1,8 +1,5 @@
 <script type="text/javascript"> /* TODO : empêcher de faire 3 semaines avec une semaine déjà réservée au milieu */
 
-    var oldDays;
-    const HOLIDAY_WEEKS = [42, 43, 44, 51, 52, 1, 6, 7, 8, 9, 10, 14, 15, 16, 17, 18];
-
     $(function () {
         // Link calendars together
         $('#begin_group').datetimepicker({
@@ -25,7 +22,7 @@
 
         // Contraindre la date de fin en fonction de la date de début choisie
         $("#begin_group").on("dp.change", function (e) {
-            $('#end_group').data("DateTimePicker").minDate(e.date);
+            $('#end_group').data("DateTimePicker").minDate(e.date.add(2, 'days'));
             $('#end_group > input').val("");
         });
 
@@ -35,55 +32,14 @@
             updateDates();
         });
 
-        $("#begin_group").on("dp.change", function (e) {
-            correctDates();
+        $("#begin_group").on("dp.change", function () {
             updatePrice();
         });
         $("#end_group").on("dp.change", function () {
-            correctDates();
             updatePrice();
         });
 
     });
-
-    // Modifier les dates sélectionnées pour qu'elles soient les plus proches de ce que l'utilisateur a sélectionné
-    function correctDates(){
-        var beginDate = $("#begin_group").data("DateTimePicker").date();
-        var endDate = $("#end_group").data("DateTimePicker").date();
-
-        // Week end autorisé dans le chalet hors saison
-        if(beginDate !== null){
-            if((beginDate.week() < 24 || beginDate.week() > 37) && $("#place").val() == 1 && HOLIDAY_WEEKS.indexOf(beginDate.week()) === -1){
-                if(beginDate.day() >= 5 || beginDate.day() === 0){
-                    if(beginDate.day() === 0){         // Dimanche == premier jour de la semaine suivante
-                        $("#begin_group").data("DateTimePicker").date(beginDate.subtract(7, 'days'));
-                    }
-                    $("#begin_group").data("DateTimePicker").date(beginDate.day(5));
-                }
-                else {
-                    $("#begin_group").data("DateTimePicker").date(beginDate.day(1));
-                }
-            }
-            else {
-                // Semaine normale
-                if(beginDate.day() === 0){         // Dimanche == premier jour de la semaine suivante
-                    $("#begin_group").data("DateTimePicker").date(beginDate.subtract(5, 'days'));
-                }
-                else {
-                    $("#begin_group").data("DateTimePicker").date(beginDate.day(1));
-                }
-
-            }
-        }
-
-        if(endDate !== null){
-            if(endDate.day() !== 0){
-                $("#end_group").data("DateTimePicker").date(endDate.add(7, 'days').day(0));
-            }
-        }
-
-
-    }
 
     // Mettre à jour le prix en fonction du lieu et des dates
     function updatePrice(){
