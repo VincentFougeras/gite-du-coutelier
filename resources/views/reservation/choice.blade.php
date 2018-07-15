@@ -112,8 +112,11 @@
         <div class="col-md-8">
             <button type="submit" class="btn btn-primary btn-block">Réserver pour <span id="price">0</span>€</button>
         </div>
-        <div class="col-md-4">
-            <div id="spinner"><img src="{!! asset('images/spinner.svg') !!}"></div>
+        <div class="col-md-1">
+            <div class="spinner"><img src="{!! asset('images/spinner.svg') !!}"></div>
+        </div>
+        <div class="col-md-8">
+            <p class="spinner">Veuillez patienter ...</p>
         </div>
     </div>
 
