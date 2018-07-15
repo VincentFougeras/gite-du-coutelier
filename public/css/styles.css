@@ -83,10 +83,16 @@ footer .credit p:nth-child(2) a {
 /*
     Reservation
  */
-#spinner {
+.spinner {
     display: none;
+    text-align: center;
 }
-#spinner img {
+p.spinner {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #6c3a0c;
+}
+.spinner img {
     height : 50px;
     position : relative;
     top : -8px;

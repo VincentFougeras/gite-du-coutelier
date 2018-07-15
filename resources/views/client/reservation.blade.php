@@ -36,9 +36,7 @@
         </tr>
     </table>
 
-    <p>La réservation peut être annulée
-        <a id="time-until" href="#" data-toggle="popover" data-content="<ul><li>2 semaines avant pour une semaine en pleine saison</li><li>1 semaine avant pour une semaine hors saison</li><li>1 jour avant pour un week-end</li></ul>">
-            jusqu'à un certain temps</a> avant la date du séjour.</p>
+    <p>La réservation peut être annulée tant que le nombre de jours avant la date du séjour est supérieur à la durée du séjour.</p>
     <p>Si vous annulez la réservation, la somme payée vous sera remboursée.</p>
     @if($is_cancellable)
         {!! Form::open(['method' => 'DELETE', 'url' => ['my/reservation', $reservation->id]]) !!}
@@ -55,7 +53,6 @@
 
     <script>
         $(document).ready(function() {
-            $('#time-until').popover({html : true, placement : 'top'});
 
             $("#dialog-confirm").dialog({
                 autoOpen: false,

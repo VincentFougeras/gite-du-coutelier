@@ -35,7 +35,7 @@
             errorElement.textContent = result.error.message;
             errorElement.classList.add('visible');
             $('form button').prop('disabled', false);
-            $('#spinner').hide();
+            $('.spinner').hide();
         }
     }
 
@@ -48,7 +48,7 @@
         e.preventDefault();
 
         $('form button').prop('disabled', true);
-        $('#spinner').show();
+        $('.spinner').show();
 
         var extraDetails = {
             name: form.querySelector('input[name=name]').value,

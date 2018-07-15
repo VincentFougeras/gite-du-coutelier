@@ -20,8 +20,8 @@
                     <div class='input-group date' id='begin_group'>
                         <input type='text' class="form-control" placeholder="Début" required id="begin_date" name="beginning"/>
                         <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -30,19 +30,16 @@
                     <div class='input-group date' id='end_group'>
                         <input type='text' class="form-control" placeholder="Fin" required id="end_date" name="end"/>
                         <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="alert alert-info"><strong>Comment choisir ses dates</strong>
-            <ul>
-                <li>Toute l'année : <strong>du lundi au dimanche (6 nuits)</strong> renouvelable sur plusieurs semaines</li>
-                <li>Week-end possible en hiver (semaines 37 à 24), hors vacances scolaires, au Chalet 1 uniquement : <strong>du vendredi au dimanche (2 nuits)</strong></li>
-            </ul>
+        <div class="alert alert-info">
+            Vous pouvez réserver au minimum <strong>3 jours (2 nuits)</strong>, n'importe quand dans l'année. Les prix sont plus faibles en hiver (semaines 37 à 24).
         </div>
     </div>
 </div>

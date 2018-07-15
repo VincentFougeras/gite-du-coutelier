@@ -8,7 +8,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            <p>{{ $reservation->user->name }}, vous avez effectué une réservation dans {{($reservation->is_chalet ? 'le chalet' : 'l\'extension')}}.</p>
+            <p>{{ $reservation->user->name }}, vous avez effectué une réservation dans {{($reservation->is_chalet ? 'le Chalet 1' : 'le Chalet 2')}}.</p>
             <p>Vous pouvez désormais
                 <a href="{{ url('/my/reservations') }}" target="_blank">accéder aux détails de votre réservation</a>,
                 <a href="{{ url('/contact') }}" target="_blank">nous contacter</a>, ou
@@ -30,7 +30,7 @@
                 </tr>
                 <tr>
                     <th>Lieu</th>
-                    <td>{{ $reservation->is_chalet ? "Le chalet" : "L'extension" }}</td>
+                    <td>{{ $reservation->is_chalet ? "Chalet 1" : "Chalet 2" }}</td>
                 </tr>
                 <tr>
                     <th>Nb. de résidents</th>
