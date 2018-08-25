@@ -39,7 +39,7 @@
     </div>
     <div class="col-md-4">
         <div class="alert alert-info">
-            Vous pouvez réserver au minimum <strong>3 jours (2 nuits)</strong>, n'importe quand dans l'année. Les prix sont plus faibles en hiver (semaines 37 à 24).
+            Vous pouvez réserver au minimum <strong>3 jours (2 nuits)</strong>, n'importe quand dans l'année. Les prix sont plus faibles du lundi au jeudi, ainsi qu'en période hivernale (semaines 37 à 24).
         </div>
     </div>
 </div>

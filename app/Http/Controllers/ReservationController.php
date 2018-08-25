@@ -19,8 +19,16 @@ use Stripe\Charge;
 class ReservationController extends Controller
 {
 
-    const PRICE_CHALET_PER_DAY_PLEINE_SAISON = 5700;
-    const PRICE_CHALET_PER_DAY_HORS_SAISON = 4300;
+    const PRICE_CHALET_1_WEEK_SUMMER = 3800;
+    const PRICE_CHALET_1_WEEK_END_SUMMER = 8300;
+    const PRICE_CHALET_1_WEEK_WINTER = 2500;
+    const PRICE_CHALET_1_WEEK_END_WINTER = 6700;
+
+    const PRICE_CHALET_2_WEEK_SUMMER = 5000;
+    const PRICE_CHALET_2_WEEK_END_SUMMER = 11700;
+    const PRICE_CHALET_2_WEEK_WINTER = 3800;
+    const PRICE_CHALET_2_WEEK_END_WINTER = 8300;
+
     const SMALLEST_DURATION = 2;
 
     const SUMMER_START_WEEK = 24;
@@ -138,11 +146,21 @@ class ReservationController extends Controller
                 if($is_chalet) {
                     if($currDay->weekOfYear >= self::SUMMER_START_WEEK && $currDay->weekOfYear <= self::SUMMER_END_WEEK) {
                         // Pleine saison
-                        $amount += self::PRICE_CHALET_PER_DAY_PLEINE_SAISON;
+                        if($currDay->dayOfWeekIso < 5){
+                            $amount += self::PRICE_CHALET_1_WEEK_SUMMER;
+                        }
+                        else {
+                            $amount += self::PRICE_CHALET_1_WEEK_END_SUMMER;
+                        }
                     }
                     else {
                         // Hors saison
-                        $amount += self::PRICE_CHALET_PER_DAY_HORS_SAISON;
+                        if($currDay->dayOfWeekIso < 5){
+                            $amount += self::PRICE_CHALET_1_WEEK_WINTER;
+                        }
+                        else {
+                            $amount += self::PRICE_CHALET_1_WEEK_END_WINTER;
+                        }
                     }
                 }
             }

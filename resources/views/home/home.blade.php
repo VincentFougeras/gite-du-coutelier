@@ -94,8 +94,8 @@
 
             <div>
                 <h2>Infos pratiques</h2>
-                <p><span class="glyphicon glyphicon-euro"></span>400€ la semaine en pleine saison (été), 300€ la semaine hors saison (hiver)</p>
-                <p class="text-info">Hors saison, vous pouvez réserver pour un week-end (200€).</p>
+                <p><span class="glyphicon glyphicon-euro"></span>Les prix varient en fonction des jours sélectionnés lors de la réservation.</p>
+                <p class="text-info">A titre indicatif, une semaine complète en été coûte 400€ dans le Chalet 1, tandis qu'un week-end en hiver coûte 200€.</p>
                 <p><span class="glyphicon glyphicon-user"></span>Capacité : 4 personnes</p>
                 <p><span class="glyphicon glyphicon-home"></span>Séjour avec coin cuisine équipée, lave-linge, TV, internet, WIFI, plancha</p>
                 <ul>
