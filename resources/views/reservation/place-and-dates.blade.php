@@ -5,7 +5,7 @@
             {!! Form::label('place', 'Lieu de réservation :') !!}
             <select class="form-control" id="place" name="place">
                 <option value="1">Chalet 1</option>
-                <option value="0" disabled>Chalet 2 (pas encore disponible)</option>
+                <option value="0">Chalet 2</option>
             </select>
         </div>
     </div>

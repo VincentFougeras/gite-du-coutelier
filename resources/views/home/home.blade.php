@@ -53,7 +53,7 @@
                         {!! Form::label('place', 'Choisissez un lieu :') !!}
                         <select class="form-control" id="place" name="place">
                             <option value="1">Chalet 1</option>
-                            <option value="0" disabled>Chalet 2 (pas encore disponible)</option>
+                            <option value="0">Chalet 2</option>
                         </select>
                     </div>
                     <div>
@@ -88,12 +88,12 @@
                 <p>Pour ceux qui recherchent la <strong>détente</strong>, le Salinea Spa de Salies du Salat vous accueillera, ou encore l’établissement de cure thermale.
                     Vous pourrez terminer votre soirée au <strong>casino</strong> de Salies du Salat (17 km).</p>
 
-                <p class="bg-primary"><span class="glyphicon glyphicon-bell"></span><span class="text">Ouverture du second chalet en juillet</span></p>
-                <p class="bg-primary"><span class="glyphicon glyphicon-bell"></span><span class="text">Ouverture d'un spa en septembre</span></p>
+                <p class="bg-primary"><span class="glyphicon glyphicon-bell"></span><span class="text">Le second chalet est désormais ouvert !</span></p>
+                <p class="bg-primary"><span class="glyphicon glyphicon-bell"></span><span class="text">Ouverture prochaine d'un spa</span></p>
             </div>
 
             <div>
-                <h2>Infos pratiques</h2>
+                <h2>Infos pratiques <span class="text-muted" style="font-size: 0.8em;">(Chalet 1)</span></h2>
                 <p><span class="glyphicon glyphicon-euro"></span>Les prix varient en fonction des jours sélectionnés lors de la réservation.</p>
                 <p class="text-info">A titre indicatif, une semaine complète en été coûte 400€ dans le Chalet 1, tandis qu'un week-end en hiver coûte 200€.</p>
                 <p><span class="glyphicon glyphicon-user"></span>Capacité : 4 personnes</p>

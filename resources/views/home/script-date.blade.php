@@ -21,14 +21,14 @@
         $('#place').change(function(){
             updateDates();
 
-            if($('#place').find('option:selected').prop('value') === '1'){
+            /*if($('#place').find('option:selected').prop('value') === '1'){
                 // Switch to chalet
                 $('.carousel').carousel(0);
             }
             else {
                 // Switch to extension
                 $('.carousel').carousel(1);
-            }
+            }*/
         });
 
     });

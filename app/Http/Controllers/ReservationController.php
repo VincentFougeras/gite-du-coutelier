@@ -163,6 +163,26 @@ class ReservationController extends Controller
                         }
                     }
                 }
+                else {
+                    if($currDay->weekOfYear >= self::SUMMER_START_WEEK && $currDay->weekOfYear <= self::SUMMER_END_WEEK) {
+                        // Pleine saison
+                        if($currDay->dayOfWeekIso < 5){
+                            $amount += self::PRICE_CHALET_2_WEEK_SUMMER;
+                        }
+                        else {
+                            $amount += self::PRICE_CHALET_2_WEEK_END_SUMMER;
+                        }
+                    }
+                    else {
+                        // Hors saison
+                        if($currDay->dayOfWeekIso < 5){
+                            $amount += self::PRICE_CHALET_2_WEEK_WINTER;
+                        }
+                        else {
+                            $amount += self::PRICE_CHALET_2_WEEK_END_WINTER;
+                        }
+                    }
+                }
             }
         }
 
@@ -180,7 +200,7 @@ class ReservationController extends Controller
         * Validation of the $request
         */
         $validator = \Validator::make($request->all(), [
-            'place' => /*'required|in:0,1',*/ 'required|in:1',
+            'place' => 'required|in:0,1',
             'nb_people' => ['required', 'integer' , ($request->place == 1 ? 'between:1,4' : 'between:1,6')],
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -314,7 +334,7 @@ class ReservationController extends Controller
         * Validation of the $request
         */
         $validator = \Validator::make($request->all(), [
-            'place' => /*'required|in:0,1', */ 'required|in:1',
+            'place' => 'required|in:0,1',
             'nb_people' => ['required', 'integer' , ($request->place == 1 ? 'between:1,4' : 'between:1,6')],
             'name' => 'required|string|max:255',
             'beginning' => 'required',
@@ -462,7 +482,7 @@ class ReservationController extends Controller
         * Validation of the $request
         */
         $validator = \Validator::make($request->all(), [
-            'place' => /*'required|in:0,1', */ 'required|in:1',
+            'place' => 'required|in:0,1',
             'name' => 'required|string|max:255',
             'beginning' => 'required',
             'end' => 'required',
